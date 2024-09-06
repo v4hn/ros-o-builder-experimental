@@ -1,0 +1,5 @@
+repositories:
+  cmake_modules:
+    type: git
+    url: https://github.com/ros/cmake_modules.git
+    version: 0.5-devel
