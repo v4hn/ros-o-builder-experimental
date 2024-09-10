@@ -3,13 +3,14 @@ on:
   push:
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-22.04
     steps:
       - name: Check out the repo
         uses: actions/checkout@v4
       - name: restore cache?
         uses: actions/cache/restore@v4
+        id: cache
         with:
           path: /home/runner/apt_repo
           key: cache-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
@@ -18,8 +19,8 @@ jobs:
       - name: verify cache
         run: |
           # echo matched key
-          echo "cache hit: '${{ steps.cache.outputs.cache-hit }}'"
-          echo "cache key: '${{ steps.cache.outputs.cache-matched-key }}'"
+          echo cache hit: ${{ steps.cache.outputs.cache-hit }}
+          echo cache key: ${{ steps.cache.outputs.cache-matched-key }}
           mkdir -p /home/runner/apt_repo
           touch /home/runner/apt_repo/test
       - name: save cache
