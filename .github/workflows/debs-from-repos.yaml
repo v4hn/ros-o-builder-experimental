@@ -5,6 +5,8 @@ on:
         type: string
       depends:
         type: string
+      worker:
+        type: string
       extra_sbuild_conf:
         type: string
         default: ''
@@ -21,40 +23,35 @@ jobs:
       - name: Check out the repo
         uses: actions/checkout@v4
       - name: Use apt packages ${{ inputs.depends }}
-        id: depends-cache
+        id: fetch-dependencies
         if: ${{ inputs.depends }}
         uses: actions/cache/restore@v4
         with:
-          path: /home/runner/apt_repo
-          key: apt-repo-${{ env.DEB_DISTRO }}-${{ env.ROS_DISTRO }}-${{ inputs.depends }}-${{ github.sha }}-${{ github.run_id }}
-          fail-on-cache-miss: true
-      - name: Use ccache
-        uses: actions/cache/restore@v4
-        with:
-          path: ${{ env.CCACHE_PATH }}
-          key: ccache-${{ env.DEB_DISTRO }}-${{ env.ROS_DISTRO }}-${{ inputs.repos }}-${{ github.sha }}-${{ github.run_id }}
+          path: /home/runner/apt_repo_dependencies
+          key: apt-repo-${{ inputs.depends }}-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
           restore-keys: |
-            ccache-${{ env.DEB_DISTRO }}-${{ env.ROS_DISTRO }}-${{ inputs.repos }}
+            apt-repo-${{ inputs.depends }}-${{ github.sha }}-${{ github.run_id }}
+      - name: Verify cache
+        if: ${{ inputs.depends }}
+        run: |
+          if [ -z "${{ steps.fetch-dependencies.outputs.cache-hit }}" ]; then
+            echo "Cache not found"
+            exit 1
+          fi
       - name: Build packages
-        uses: v4hn/ros-deb-builder-action/build@rosotest
+        uses: v4hn/ros-deb-builder-action/build@rosotest-split-products
         timeout-minutes: 330
         #continue-on-error: true
         with:
           ROS_DISTRO: ${{ env.ROS_DISTRO }}
           DEB_DISTRO: ${{ env.DEB_DISTRO }}
-          SBUILD_CONF: "$verbose = 1; ${{ inputs.extra_sbuild_conf }}"
+          SBUILD_CONF: "$verbose = 1; $extra_packages = ['/home/runner/apt_repo_dependencies']; ${{ inputs.extra_sbuild_conf }}"
           ROSDEP_SOURCE: rosdep.yaml
           REPOS_FILE: ${{ inputs.repos }}.repos
           CONTINUE_ON_ERROR: true
-      - name: Store ccache
-        uses: actions/cache/save@v4
-        if: always() # save cache on timeout too
-        with:
-          path: ${{ env.CCACHE_PATH }}
-          key: ccache-${{ env.DEB_DISTRO }}-${{ env.ROS_DISTRO }}-${{ inputs.repos }}-${{ github.sha }}-${{ github.run_id }}
-      - name: Cache apt repo unconditionally
+      - name: Store apt repo
         uses: actions/cache/save@v4
         if: always()
         with:
           path: /home/runner/apt_repo
-          key: apt-repo-${{ env.DEB_DISTRO }}-${{ env.ROS_DISTRO }}-${{ inputs.repos }}-${{ github.sha }}-${{ github.run_id }}
+          key: apt-repo-${{ inputs.worker }}-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
