@@ -3,48 +3,707 @@ name: build
 on:
   workflow_dispatch:
   push:
-    paths:
-      - '**.repos'
-      - '**.yaml'
 
 jobs:
   stage0-worker0:
-    uses: ./.github/workflows/debs-from-repos.yaml
+    uses: ./.github/workflows/worker.yaml
+    if: success() || failure()
     with:
-      repos: envs
       worker: stage0-worker0
   stage0:
-    if: success() || failure() # can get cancelled
-    needs: [stage0-worker0]
     uses: ./.github/workflows/aggregate-debs.yaml
+    if: success() || failure()
+    needs: [stage0-worker0]
     with:
       stage: 0
   stage1-worker0:
-    if: success() || failure() # can get cancelled
+    uses: ./.github/workflows/worker.yaml
+    if: success() || failure()
     needs: stage0
-    uses: ./.github/workflows/debs-from-repos.yaml
     with:
-      repos: cmake_modules
-      depends: stage0
       worker: stage1-worker0
-  stage1-worker1:
-    if: success() || failure() # can get cancelled
-    needs: stage0
-    uses: ./.github/workflows/debs-from-repos.yaml
-    with:
-      repos: genmsg
       depends: stage0
+  stage1-worker1:
+    uses: ./.github/workflows/worker.yaml
+    if: success() || failure()
+    needs: stage0
+    with:
       worker: stage1-worker1
+      depends: stage0
+  stage1-worker2:
+    uses: ./.github/workflows/worker.yaml
+    if: success() || failure()
+    needs: stage0
+    with:
+      worker: stage1-worker2
+      depends: stage0
+  stage1-worker3:
+    uses: ./.github/workflows/worker.yaml
+    if: success() || failure()
+    needs: stage0
+    with:
+      worker: stage1-worker3
+      depends: stage0
+  stage1-worker4:
+    uses: ./.github/workflows/worker.yaml
+    if: success() || failure()
+    needs: stage0
+    with:
+      worker: stage1-worker4
+      depends: stage0
+  stage1-worker5:
+    uses: ./.github/workflows/worker.yaml
+    if: success() || failure()
+    needs: stage0
+    with:
+      worker: stage1-worker5
+      depends: stage0
+  stage1-worker6:
+    uses: ./.github/workflows/worker.yaml
+    if: success() || failure()
+    needs: stage0
+    with:
+      worker: stage1-worker6
+      depends: stage0
+  stage1-worker7:
+    uses: ./.github/workflows/worker.yaml
+    if: success() || failure()
+    needs: stage0
+    with:
+      worker: stage1-worker7
+      depends: stage0
+  stage1-worker8:
+    uses: ./.github/workflows/worker.yaml
+    if: success() || failure()
+    needs: stage0
+    with:
+      worker: stage1-worker8
+      depends: stage0
+  stage1-worker9:
+    uses: ./.github/workflows/worker.yaml
+    if: success() || failure()
+    needs: stage0
+    with:
+      worker: stage1-worker9
+      depends: stage0
   stage1:
-    if: success() || failure() # can get cancelled
-    needs: [stage1-worker0, stage1-worker1]
     uses: ./.github/workflows/aggregate-debs.yaml
+    if: success() || failure()
+    needs: [stage1-worker0, stage1-worker1, stage1-worker2, stage1-worker3, stage1-worker4, stage1-worker5, stage1-worker6, stage1-worker7, stage1-worker8, stage1-worker9]
     with:
       stage: 1
   stage2-worker0:
-    if: success() || failure() # can get cancelled
+    uses: ./.github/workflows/worker.yaml
+    if: success() || failure()
     needs: stage1
-    uses: ./.github/workflows/debs-from-repos.yaml
     with:
-      repos: fused
+      worker: stage2-worker0
       depends: stage1
+  stage2-worker1:
+    uses: ./.github/workflows/worker.yaml
+    if: success() || failure()
+    needs: stage1
+    with:
+      worker: stage2-worker1
+      depends: stage1
+  stage2-worker2:
+    uses: ./.github/workflows/worker.yaml
+    if: success() || failure()
+    needs: stage1
+    with:
+      worker: stage2-worker2
+      depends: stage1
+  stage2-worker3:
+    uses: ./.github/workflows/worker.yaml
+    if: success() || failure()
+    needs: stage1
+    with:
+      worker: stage2-worker3
+      depends: stage1
+  stage2-worker4:
+    uses: ./.github/workflows/worker.yaml
+    if: success() || failure()
+    needs: stage1
+    with:
+      worker: stage2-worker4
+      depends: stage1
+  stage2:
+    uses: ./.github/workflows/aggregate-debs.yaml
+    if: success() || failure()
+    needs: [stage2-worker0, stage2-worker1, stage2-worker2, stage2-worker3, stage2-worker4]
+    with:
+      stage: 2
+  stage3-worker0:
+    uses: ./.github/workflows/worker.yaml
+    if: success() || failure()
+    needs: stage2
+    with:
+      worker: stage3-worker0
+      depends: stage2
+  stage3-worker1:
+    uses: ./.github/workflows/worker.yaml
+    if: success() || failure()
+    needs: stage2
+    with:
+      worker: stage3-worker1
+      depends: stage2
+  stage3-worker2:
+    uses: ./.github/workflows/worker.yaml
+    if: success() || failure()
+    needs: stage2
+    with:
+      worker: stage3-worker2
+      depends: stage2
+  stage3-worker3:
+    uses: ./.github/workflows/worker.yaml
+    if: success() || failure()
+    needs: stage2
+    with:
+      worker: stage3-worker3
+      depends: stage2
+  stage3-worker4:
+    uses: ./.github/workflows/worker.yaml
+    if: success() || failure()
+    needs: stage2
+    with:
+      worker: stage3-worker4
+      depends: stage2
+  stage3:
+    uses: ./.github/workflows/aggregate-debs.yaml
+    if: success() || failure()
+    needs: [stage3-worker0, stage3-worker1, stage3-worker2, stage3-worker3, stage3-worker4]
+    with:
+      stage: 3
+  stage4-worker0:
+    uses: ./.github/workflows/worker.yaml
+    if: success() || failure()
+    needs: stage3
+    with:
+      worker: stage4-worker0
+      depends: stage3
+  stage4-worker1:
+    uses: ./.github/workflows/worker.yaml
+    if: success() || failure()
+    needs: stage3
+    with:
+      worker: stage4-worker1
+      depends: stage3
+  stage4-worker2:
+    uses: ./.github/workflows/worker.yaml
+    if: success() || failure()
+    needs: stage3
+    with:
+      worker: stage4-worker2
+      depends: stage3
+  stage4-worker3:
+    uses: ./.github/workflows/worker.yaml
+    if: success() || failure()
+    needs: stage3
+    with:
+      worker: stage4-worker3
+      depends: stage3
+  stage4-worker4:
+    uses: ./.github/workflows/worker.yaml
+    if: success() || failure()
+    needs: stage3
+    with:
+      worker: stage4-worker4
+      depends: stage3
+  stage4:
+    uses: ./.github/workflows/aggregate-debs.yaml
+    if: success() || failure()
+    needs: [stage4-worker0, stage4-worker1, stage4-worker2, stage4-worker3, stage4-worker4]
+    with:
+      stage: 4
+  stage5-worker0:
+    uses: ./.github/workflows/worker.yaml
+    if: success() || failure()
+    needs: stage4
+    with:
+      worker: stage5-worker0
+      depends: stage4
+  stage5-worker1:
+    uses: ./.github/workflows/worker.yaml
+    if: success() || failure()
+    needs: stage4
+    with:
+      worker: stage5-worker1
+      depends: stage4
+  stage5-worker2:
+    uses: ./.github/workflows/worker.yaml
+    if: success() || failure()
+    needs: stage4
+    with:
+      worker: stage5-worker2
+      depends: stage4
+  stage5-worker3:
+    uses: ./.github/workflows/worker.yaml
+    if: success() || failure()
+    needs: stage4
+    with:
+      worker: stage5-worker3
+      depends: stage4
+  stage5-worker4:
+    uses: ./.github/workflows/worker.yaml
+    if: success() || failure()
+    needs: stage4
+    with:
+      worker: stage5-worker4
+      depends: stage4
+  stage5:
+    uses: ./.github/workflows/aggregate-debs.yaml
+    if: success() || failure()
+    needs: [stage5-worker0, stage5-worker1, stage5-worker2, stage5-worker3, stage5-worker4]
+    with:
+      stage: 5
+  stage6-worker0:
+    uses: ./.github/workflows/worker.yaml
+    if: success() || failure()
+    needs: stage5
+    with:
+      worker: stage6-worker0
+      depends: stage5
+  stage6-worker1:
+    uses: ./.github/workflows/worker.yaml
+    if: success() || failure()
+    needs: stage5
+    with:
+      worker: stage6-worker1
+      depends: stage5
+  stage6-worker2:
+    uses: ./.github/workflows/worker.yaml
+    if: success() || failure()
+    needs: stage5
+    with:
+      worker: stage6-worker2
+      depends: stage5
+  stage6-worker3:
+    uses: ./.github/workflows/worker.yaml
+    if: success() || failure()
+    needs: stage5
+    with:
+      worker: stage6-worker3
+      depends: stage5
+  stage6-worker4:
+    uses: ./.github/workflows/worker.yaml
+    if: success() || failure()
+    needs: stage5
+    with:
+      worker: stage6-worker4
+      depends: stage5
+  stage6:
+    uses: ./.github/workflows/aggregate-debs.yaml
+    if: success() || failure()
+    needs: [stage6-worker0, stage6-worker1, stage6-worker2, stage6-worker3, stage6-worker4]
+    with:
+      stage: 6
+  stage7-worker0:
+    uses: ./.github/workflows/worker.yaml
+    if: success() || failure()
+    needs: stage6
+    with:
+      worker: stage7-worker0
+      depends: stage6
+  stage7-worker1:
+    uses: ./.github/workflows/worker.yaml
+    if: success() || failure()
+    needs: stage6
+    with:
+      worker: stage7-worker1
+      depends: stage6
+  stage7-worker2:
+    uses: ./.github/workflows/worker.yaml
+    if: success() || failure()
+    needs: stage6
+    with:
+      worker: stage7-worker2
+      depends: stage6
+  stage7-worker3:
+    uses: ./.github/workflows/worker.yaml
+    if: success() || failure()
+    needs: stage6
+    with:
+      worker: stage7-worker3
+      depends: stage6
+  stage7-worker4:
+    uses: ./.github/workflows/worker.yaml
+    if: success() || failure()
+    needs: stage6
+    with:
+      worker: stage7-worker4
+      depends: stage6
+  stage7:
+    uses: ./.github/workflows/aggregate-debs.yaml
+    if: success() || failure()
+    needs: [stage7-worker0, stage7-worker1, stage7-worker2, stage7-worker3, stage7-worker4]
+    with:
+      stage: 7
+  stage8-worker0:
+    uses: ./.github/workflows/worker.yaml
+    if: success() || failure()
+    needs: stage7
+    with:
+      worker: stage8-worker0
+      depends: stage7
+  stage8-worker1:
+    uses: ./.github/workflows/worker.yaml
+    if: success() || failure()
+    needs: stage7
+    with:
+      worker: stage8-worker1
+      depends: stage7
+  stage8-worker2:
+    uses: ./.github/workflows/worker.yaml
+    if: success() || failure()
+    needs: stage7
+    with:
+      worker: stage8-worker2
+      depends: stage7
+  stage8-worker3:
+    uses: ./.github/workflows/worker.yaml
+    if: success() || failure()
+    needs: stage7
+    with:
+      worker: stage8-worker3
+      depends: stage7
+  stage8-worker4:
+    uses: ./.github/workflows/worker.yaml
+    if: success() || failure()
+    needs: stage7
+    with:
+      worker: stage8-worker4
+      depends: stage7
+  stage8:
+    uses: ./.github/workflows/aggregate-debs.yaml
+    if: success() || failure()
+    needs: [stage8-worker0, stage8-worker1, stage8-worker2, stage8-worker3, stage8-worker4]
+    with:
+      stage: 8
+  stage9-worker0:
+    uses: ./.github/workflows/worker.yaml
+    if: success() || failure()
+    needs: stage8
+    with:
+      worker: stage9-worker0
+      depends: stage8
+  stage9-worker1:
+    uses: ./.github/workflows/worker.yaml
+    if: success() || failure()
+    needs: stage8
+    with:
+      worker: stage9-worker1
+      depends: stage8
+  stage9-worker2:
+    uses: ./.github/workflows/worker.yaml
+    if: success() || failure()
+    needs: stage8
+    with:
+      worker: stage9-worker2
+      depends: stage8
+  stage9-worker3:
+    uses: ./.github/workflows/worker.yaml
+    if: success() || failure()
+    needs: stage8
+    with:
+      worker: stage9-worker3
+      depends: stage8
+  stage9-worker4:
+    uses: ./.github/workflows/worker.yaml
+    if: success() || failure()
+    needs: stage8
+    with:
+      worker: stage9-worker4
+      depends: stage8
+  stage9:
+    uses: ./.github/workflows/aggregate-debs.yaml
+    if: success() || failure()
+    needs: [stage9-worker0, stage9-worker1, stage9-worker2, stage9-worker3, stage9-worker4]
+    with:
+      stage: 9
+  stage10-worker0:
+    uses: ./.github/workflows/worker.yaml
+    if: success() || failure()
+    needs: stage9
+    with:
+      worker: stage10-worker0
+      depends: stage9
+  stage10-worker1:
+    uses: ./.github/workflows/worker.yaml
+    if: success() || failure()
+    needs: stage9
+    with:
+      worker: stage10-worker1
+      depends: stage9
+  stage10-worker2:
+    uses: ./.github/workflows/worker.yaml
+    if: success() || failure()
+    needs: stage9
+    with:
+      worker: stage10-worker2
+      depends: stage9
+  stage10-worker3:
+    uses: ./.github/workflows/worker.yaml
+    if: success() || failure()
+    needs: stage9
+    with:
+      worker: stage10-worker3
+      depends: stage9
+  stage10-worker4:
+    uses: ./.github/workflows/worker.yaml
+    if: success() || failure()
+    needs: stage9
+    with:
+      worker: stage10-worker4
+      depends: stage9
+  stage10:
+    uses: ./.github/workflows/aggregate-debs.yaml
+    if: success() || failure()
+    needs: [stage10-worker0, stage10-worker1, stage10-worker2, stage10-worker3, stage10-worker4]
+    with:
+      stage: 10
+  stage11-worker0:
+    uses: ./.github/workflows/worker.yaml
+    if: success() || failure()
+    needs: stage10
+    with:
+      worker: stage11-worker0
+      depends: stage10
+  stage11-worker1:
+    uses: ./.github/workflows/worker.yaml
+    if: success() || failure()
+    needs: stage10
+    with:
+      worker: stage11-worker1
+      depends: stage10
+  stage11-worker2:
+    uses: ./.github/workflows/worker.yaml
+    if: success() || failure()
+    needs: stage10
+    with:
+      worker: stage11-worker2
+      depends: stage10
+  stage11-worker3:
+    uses: ./.github/workflows/worker.yaml
+    if: success() || failure()
+    needs: stage10
+    with:
+      worker: stage11-worker3
+      depends: stage10
+  stage11-worker4:
+    uses: ./.github/workflows/worker.yaml
+    if: success() || failure()
+    needs: stage10
+    with:
+      worker: stage11-worker4
+      depends: stage10
+  stage11:
+    uses: ./.github/workflows/aggregate-debs.yaml
+    if: success() || failure()
+    needs: [stage11-worker0, stage11-worker1, stage11-worker2, stage11-worker3, stage11-worker4]
+    with:
+      stage: 11
+  stage12-worker0:
+    uses: ./.github/workflows/worker.yaml
+    if: success() || failure()
+    needs: stage11
+    with:
+      worker: stage12-worker0
+      depends: stage11
+  stage12-worker1:
+    uses: ./.github/workflows/worker.yaml
+    if: success() || failure()
+    needs: stage11
+    with:
+      worker: stage12-worker1
+      depends: stage11
+  stage12-worker2:
+    uses: ./.github/workflows/worker.yaml
+    if: success() || failure()
+    needs: stage11
+    with:
+      worker: stage12-worker2
+      depends: stage11
+  stage12-worker3:
+    uses: ./.github/workflows/worker.yaml
+    if: success() || failure()
+    needs: stage11
+    with:
+      worker: stage12-worker3
+      depends: stage11
+  stage12-worker4:
+    uses: ./.github/workflows/worker.yaml
+    if: success() || failure()
+    needs: stage11
+    with:
+      worker: stage12-worker4
+      depends: stage11
+  stage12:
+    uses: ./.github/workflows/aggregate-debs.yaml
+    if: success() || failure()
+    needs: [stage12-worker0, stage12-worker1, stage12-worker2, stage12-worker3, stage12-worker4]
+    with:
+      stage: 12
+  stage13-worker0:
+    uses: ./.github/workflows/worker.yaml
+    if: success() || failure()
+    needs: stage12
+    with:
+      worker: stage13-worker0
+      depends: stage12
+  stage13-worker1:
+    uses: ./.github/workflows/worker.yaml
+    if: success() || failure()
+    needs: stage12
+    with:
+      worker: stage13-worker1
+      depends: stage12
+  stage13-worker2:
+    uses: ./.github/workflows/worker.yaml
+    if: success() || failure()
+    needs: stage12
+    with:
+      worker: stage13-worker2
+      depends: stage12
+  stage13-worker3:
+    uses: ./.github/workflows/worker.yaml
+    if: success() || failure()
+    needs: stage12
+    with:
+      worker: stage13-worker3
+      depends: stage12
+  stage13-worker4:
+    uses: ./.github/workflows/worker.yaml
+    if: success() || failure()
+    needs: stage12
+    with:
+      worker: stage13-worker4
+      depends: stage12
+  stage13:
+    uses: ./.github/workflows/aggregate-debs.yaml
+    if: success() || failure()
+    needs: [stage13-worker0, stage13-worker1, stage13-worker2, stage13-worker3, stage13-worker4]
+    with:
+      stage: 13
+  stage14-worker0:
+    uses: ./.github/workflows/worker.yaml
+    if: success() || failure()
+    needs: stage13
+    with:
+      worker: stage14-worker0
+      depends: stage13
+  stage14-worker1:
+    uses: ./.github/workflows/worker.yaml
+    if: success() || failure()
+    needs: stage13
+    with:
+      worker: stage14-worker1
+      depends: stage13
+  stage14-worker2:
+    uses: ./.github/workflows/worker.yaml
+    if: success() || failure()
+    needs: stage13
+    with:
+      worker: stage14-worker2
+      depends: stage13
+  stage14-worker3:
+    uses: ./.github/workflows/worker.yaml
+    if: success() || failure()
+    needs: stage13
+    with:
+      worker: stage14-worker3
+      depends: stage13
+  stage14-worker4:
+    uses: ./.github/workflows/worker.yaml
+    if: success() || failure()
+    needs: stage13
+    with:
+      worker: stage14-worker4
+      depends: stage13
+  stage14:
+    uses: ./.github/workflows/aggregate-debs.yaml
+    if: success() || failure()
+    needs: [stage14-worker0, stage14-worker1, stage14-worker2, stage14-worker3, stage14-worker4]
+    with:
+      stage: 14
+  stage15-worker0:
+    uses: ./.github/workflows/worker.yaml
+    if: success() || failure()
+    needs: stage14
+    with:
+      worker: stage15-worker0
+      depends: stage14
+  stage15-worker1:
+    uses: ./.github/workflows/worker.yaml
+    if: success() || failure()
+    needs: stage14
+    with:
+      worker: stage15-worker1
+      depends: stage14
+  stage15-worker2:
+    uses: ./.github/workflows/worker.yaml
+    if: success() || failure()
+    needs: stage14
+    with:
+      worker: stage15-worker2
+      depends: stage14
+  stage15-worker3:
+    uses: ./.github/workflows/worker.yaml
+    if: success() || failure()
+    needs: stage14
+    with:
+      worker: stage15-worker3
+      depends: stage14
+  stage15-worker4:
+    uses: ./.github/workflows/worker.yaml
+    if: success() || failure()
+    needs: stage14
+    with:
+      worker: stage15-worker4
+      depends: stage14
+  stage15:
+    uses: ./.github/workflows/aggregate-debs.yaml
+    if: success() || failure()
+    needs: [stage15-worker0, stage15-worker1, stage15-worker2, stage15-worker3, stage15-worker4]
+    with:
+      stage: 15
+  stage16-worker0:
+    uses: ./.github/workflows/worker.yaml
+    if: success() || failure()
+    needs: stage15
+    with:
+      worker: stage16-worker0
+      depends: stage15
+  stage16-worker1:
+    uses: ./.github/workflows/worker.yaml
+    if: success() || failure()
+    needs: stage15
+    with:
+      worker: stage16-worker1
+      depends: stage15
+  stage16-worker2:
+    uses: ./.github/workflows/worker.yaml
+    if: success() || failure()
+    needs: stage15
+    with:
+      worker: stage16-worker2
+      depends: stage15
+  stage16-worker3:
+    uses: ./.github/workflows/worker.yaml
+    if: success() || failure()
+    needs: stage15
+    with:
+      worker: stage16-worker3
+      depends: stage15
+  stage16-worker4:
+    uses: ./.github/workflows/worker.yaml
+    if: success() || failure()
+    needs: stage15
+    with:
+      worker: stage16-worker4
+      depends: stage15
+  stage16:
+    uses: ./.github/workflows/aggregate-debs.yaml
+    if: success() || failure()
+    needs: [stage16-worker0, stage16-worker1, stage16-worker2, stage16-worker3, stage16-worker4]
+    with:
+      stage: 16

@@ -35,15 +35,11 @@ jobs:
           key: apt-repo-${{ env.stage }}-${{ env.worker }}-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
           restore-keys: |
             apt-repo-${{ env.stage }}-${{ env.worker }}-${{ github.sha }}-${{ github.run_id }}
-      - name: Fetch results of worker0
-        env:
-          worker: worker0
-        uses: actions/cache/restore@v4
-        with:
-          path: /home/runner/apt_repo
-          key: apt-repo-${{ env.stage }}-${{ env.worker }}-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
-          restore-keys: |
-            apt-repo-${{ env.stage }}-${{ env.worker }}-${{ github.sha }}-${{ github.run_id }}
+      - name: integrate rosdep keys
+        run: |
+          touch /home/runner/apt_repo/local.yaml
+          cat /home/runner/apt_repo/local.yaml >> ${{ env.AGG }}/local.yaml
+          rm /home/runner/apt_repo/local.yaml
       - name: Fetch results of worker1
         env:
           worker: worker1
@@ -53,6 +49,11 @@ jobs:
           key: apt-repo-${{ env.stage }}-${{ env.worker }}-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
           restore-keys: |
             apt-repo-${{ env.stage }}-${{ env.worker }}-${{ github.sha }}-${{ github.run_id }}
+      - name: integrate rosdep keys
+        run: |
+          touch /home/runner/apt_repo/local.yaml
+          cat /home/runner/apt_repo/local.yaml >> ${{ env.AGG }}/local.yaml
+          rm /home/runner/apt_repo/local.yaml
       - name: Fetch results of worker2
         env:
           worker: worker2
@@ -62,6 +63,11 @@ jobs:
           key: apt-repo-${{ env.stage }}-${{ env.worker }}-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
           restore-keys: |
             apt-repo-${{ env.stage }}-${{ env.worker }}-${{ github.sha }}-${{ github.run_id }}
+      - name: integrate rosdep keys
+        run: |
+          touch /home/runner/apt_repo/local.yaml
+          cat /home/runner/apt_repo/local.yaml >> ${{ env.AGG }}/local.yaml
+          rm /home/runner/apt_repo/local.yaml
       - name: Fetch results of worker3
         env:
           worker: worker3
@@ -71,6 +77,11 @@ jobs:
           key: apt-repo-${{ env.stage }}-${{ env.worker }}-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
           restore-keys: |
             apt-repo-${{ env.stage }}-${{ env.worker }}-${{ github.sha }}-${{ github.run_id }}
+      - name: integrate rosdep keys
+        run: |
+          touch /home/runner/apt_repo/local.yaml
+          cat /home/runner/apt_repo/local.yaml >> ${{ env.AGG }}/local.yaml
+          rm /home/runner/apt_repo/local.yaml
       - name: Fetch results of worker4
         env:
           worker: worker4
@@ -80,6 +91,11 @@ jobs:
           key: apt-repo-${{ env.stage }}-${{ env.worker }}-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
           restore-keys: |
             apt-repo-${{ env.stage }}-${{ env.worker }}-${{ github.sha }}-${{ github.run_id }}
+      - name: integrate rosdep keys
+        run: |
+          touch /home/runner/apt_repo/local.yaml
+          cat /home/runner/apt_repo/local.yaml >> ${{ env.AGG }}/local.yaml
+          rm /home/runner/apt_repo/local.yaml
       - name: Fetch results of worker5
         env:
           worker: worker5
@@ -89,6 +105,11 @@ jobs:
           key: apt-repo-${{ env.stage }}-${{ env.worker }}-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
           restore-keys: |
             apt-repo-${{ env.stage }}-${{ env.worker }}-${{ github.sha }}-${{ github.run_id }}
+      - name: integrate rosdep keys
+        run: |
+          touch /home/runner/apt_repo/local.yaml
+          cat /home/runner/apt_repo/local.yaml >> ${{ env.AGG }}/local.yaml
+          rm /home/runner/apt_repo/local.yaml
       - name: Fetch results of worker6
         env:
           worker: worker6
@@ -98,6 +119,11 @@ jobs:
           key: apt-repo-${{ env.stage }}-${{ env.worker }}-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
           restore-keys: |
             apt-repo-${{ env.stage }}-${{ env.worker }}-${{ github.sha }}-${{ github.run_id }}
+      - name: integrate rosdep keys
+        run: |
+          touch /home/runner/apt_repo/local.yaml
+          cat /home/runner/apt_repo/local.yaml >> ${{ env.AGG }}/local.yaml
+          rm /home/runner/apt_repo/local.yaml
       - name: Fetch results of worker7
         env:
           worker: worker7
@@ -107,6 +133,11 @@ jobs:
           key: apt-repo-${{ env.stage }}-${{ env.worker }}-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
           restore-keys: |
             apt-repo-${{ env.stage }}-${{ env.worker }}-${{ github.sha }}-${{ github.run_id }}
+      - name: integrate rosdep keys
+        run: |
+          touch /home/runner/apt_repo/local.yaml
+          cat /home/runner/apt_repo/local.yaml >> ${{ env.AGG }}/local.yaml
+          rm /home/runner/apt_repo/local.yaml
       - name: Fetch results of worker8
         env:
           worker: worker8
@@ -116,6 +147,11 @@ jobs:
           key: apt-repo-${{ env.stage }}-${{ env.worker }}-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
           restore-keys: |
             apt-repo-${{ env.stage }}-${{ env.worker }}-${{ github.sha }}-${{ github.run_id }}
+      - name: integrate rosdep keys
+        run: |
+          touch /home/runner/apt_repo/local.yaml
+          cat /home/runner/apt_repo/local.yaml >> ${{ env.AGG }}/local.yaml
+          rm /home/runner/apt_repo/local.yaml
       - name: Fetch results of worker9
         env:
           worker: worker9
@@ -125,6 +161,11 @@ jobs:
           key: apt-repo-${{ env.stage }}-${{ env.worker }}-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
           restore-keys: |
             apt-repo-${{ env.stage }}-${{ env.worker }}-${{ github.sha }}-${{ github.run_id }}
+      - name: integrate rosdep keys
+        run: |
+          touch /home/runner/apt_repo/local.yaml
+          cat /home/runner/apt_repo/local.yaml >> ${{ env.AGG }}/local.yaml
+          rm /home/runner/apt_repo/local.yaml
       - name: Fetch results of worker10
         env:
           worker: worker10
@@ -134,6 +175,11 @@ jobs:
           key: apt-repo-${{ env.stage }}-${{ env.worker }}-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
           restore-keys: |
             apt-repo-${{ env.stage }}-${{ env.worker }}-${{ github.sha }}-${{ github.run_id }}
+      - name: integrate rosdep keys
+        run: |
+          touch /home/runner/apt_repo/local.yaml
+          cat /home/runner/apt_repo/local.yaml >> ${{ env.AGG }}/local.yaml
+          rm /home/runner/apt_repo/local.yaml
       - name: Fetch results of worker11
         env:
           worker: worker11
@@ -143,6 +189,11 @@ jobs:
           key: apt-repo-${{ env.stage }}-${{ env.worker }}-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
           restore-keys: |
             apt-repo-${{ env.stage }}-${{ env.worker }}-${{ github.sha }}-${{ github.run_id }}
+      - name: integrate rosdep keys
+        run: |
+          touch /home/runner/apt_repo/local.yaml
+          cat /home/runner/apt_repo/local.yaml >> ${{ env.AGG }}/local.yaml
+          rm /home/runner/apt_repo/local.yaml
       - name: Fetch results of worker12
         env:
           worker: worker12
@@ -152,6 +203,11 @@ jobs:
           key: apt-repo-${{ env.stage }}-${{ env.worker }}-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
           restore-keys: |
             apt-repo-${{ env.stage }}-${{ env.worker }}-${{ github.sha }}-${{ github.run_id }}
+      - name: integrate rosdep keys
+        run: |
+          touch /home/runner/apt_repo/local.yaml
+          cat /home/runner/apt_repo/local.yaml >> ${{ env.AGG }}/local.yaml
+          rm /home/runner/apt_repo/local.yaml
       - name: Fetch results of worker13
         env:
           worker: worker13
@@ -161,6 +217,11 @@ jobs:
           key: apt-repo-${{ env.stage }}-${{ env.worker }}-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
           restore-keys: |
             apt-repo-${{ env.stage }}-${{ env.worker }}-${{ github.sha }}-${{ github.run_id }}
+      - name: integrate rosdep keys
+        run: |
+          touch /home/runner/apt_repo/local.yaml
+          cat /home/runner/apt_repo/local.yaml >> ${{ env.AGG }}/local.yaml
+          rm /home/runner/apt_repo/local.yaml
       - name: Fetch results of worker14
         env:
           worker: worker14
@@ -170,6 +231,11 @@ jobs:
           key: apt-repo-${{ env.stage }}-${{ env.worker }}-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
           restore-keys: |
             apt-repo-${{ env.stage }}-${{ env.worker }}-${{ github.sha }}-${{ github.run_id }}
+      - name: integrate rosdep keys
+        run: |
+          touch /home/runner/apt_repo/local.yaml
+          cat /home/runner/apt_repo/local.yaml >> ${{ env.AGG }}/local.yaml
+          rm /home/runner/apt_repo/local.yaml
       - name: Fetch results of worker15
         env:
           worker: worker15
@@ -179,6 +245,11 @@ jobs:
           key: apt-repo-${{ env.stage }}-${{ env.worker }}-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
           restore-keys: |
             apt-repo-${{ env.stage }}-${{ env.worker }}-${{ github.sha }}-${{ github.run_id }}
+      - name: integrate rosdep keys
+        run: |
+          touch /home/runner/apt_repo/local.yaml
+          cat /home/runner/apt_repo/local.yaml >> ${{ env.AGG }}/local.yaml
+          rm /home/runner/apt_repo/local.yaml
       - name: Fetch results of worker16
         env:
           worker: worker16
@@ -188,6 +259,11 @@ jobs:
           key: apt-repo-${{ env.stage }}-${{ env.worker }}-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
           restore-keys: |
             apt-repo-${{ env.stage }}-${{ env.worker }}-${{ github.sha }}-${{ github.run_id }}
+      - name: integrate rosdep keys
+        run: |
+          touch /home/runner/apt_repo/local.yaml
+          cat /home/runner/apt_repo/local.yaml >> ${{ env.AGG }}/local.yaml
+          rm /home/runner/apt_repo/local.yaml
       - name: Fetch results of worker17
         env:
           worker: worker17
@@ -197,6 +273,11 @@ jobs:
           key: apt-repo-${{ env.stage }}-${{ env.worker }}-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
           restore-keys: |
             apt-repo-${{ env.stage }}-${{ env.worker }}-${{ github.sha }}-${{ github.run_id }}
+      - name: integrate rosdep keys
+        run: |
+          touch /home/runner/apt_repo/local.yaml
+          cat /home/runner/apt_repo/local.yaml >> ${{ env.AGG }}/local.yaml
+          rm /home/runner/apt_repo/local.yaml
       - name: Fetch results of worker18
         env:
           worker: worker18
@@ -206,6 +287,11 @@ jobs:
           key: apt-repo-${{ env.stage }}-${{ env.worker }}-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
           restore-keys: |
             apt-repo-${{ env.stage }}-${{ env.worker }}-${{ github.sha }}-${{ github.run_id }}
+      - name: integrate rosdep keys
+        run: |
+          touch /home/runner/apt_repo/local.yaml
+          cat /home/runner/apt_repo/local.yaml >> ${{ env.AGG }}/local.yaml
+          rm /home/runner/apt_repo/local.yaml
       - name: Fetch results of worker19
         env:
           worker: worker19
@@ -215,6 +301,11 @@ jobs:
           key: apt-repo-${{ env.stage }}-${{ env.worker }}-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
           restore-keys: |
             apt-repo-${{ env.stage }}-${{ env.worker }}-${{ github.sha }}-${{ github.run_id }}
+      - name: integrate rosdep keys
+        run: |
+          touch /home/runner/apt_repo/local.yaml
+          cat /home/runner/apt_repo/local.yaml >> ${{ env.AGG }}/local.yaml
+          rm /home/runner/apt_repo/local.yaml
       - name: Aggregate files
         run: |
           mv /home/runner/apt_repo/* ${{ env.AGG }}

@@ -1,9 +1,0 @@
-repositories:
-  rospack:
-    type: git
-    url: https://github.com/ros/rospack.git
-    version: noetic-devel
-  gencpp:
-    type: git
-    url: https://github.com/ros/gencpp.git
-    version: kinetic-devel
