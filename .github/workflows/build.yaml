@@ -6,6 +6,7 @@ on:
 
 env:
   AGG: /home/runner/apt_repo_dependencies
+  DISTRIBUTION: ubuntu
 
 jobs:
   stage-1:
@@ -21,7 +22,7 @@ jobs:
           mkdir src
           vcs import --recursive --shallow --input sources.repos src
           for PKG in $(catkin_topological_order --only-names); do
-            printf "%s:\n  %s:\n  - %s\n" "$PKG" "$DISTRIBUTION" "ros-one-$(printf '%s' "$PKG" | tr '_' '-')" | tee -a local.yaml
+            printf "%s:\n  %s:\n  - %s\n" "$PKG" "${{ env.DISTRIBUTION }}" "ros-one-$(printf '%s' "$PKG" | tr '_' '-')" | tee -a local.yaml
           done
           mkdir -p ${{ env.AGG }}
           mv local.yaml ${{ env.AGG }}/local.yaml
