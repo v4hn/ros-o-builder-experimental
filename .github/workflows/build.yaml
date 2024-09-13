@@ -5,10 +5,33 @@ on:
   push:
 
 jobs:
+  check-sources:
+    runs-on: ubuntu-22.04
+    env:
+      AGG: /home/runner/apt_repo_dependencies
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v4
+      - name: Investigate source repositories
+        run: |
+          mkdir src
+          vcs import --recursive --shallow --input sources.repos src
+          for PKG in $(catkin_topological_order --only-names); do
+            printf "%s:\n  %s:\n  - %s\n" "$PKG" "$DISTRIBUTION" "ros-one-$(printf '%s' "$PKG" | tr '_' '-')" >> local.yaml
+          done
+          mkdir -p ${{ env.AGG }}
+          mv local.yaml ${{ env.AGG }}/local.yaml
+          cp sources.repos ${{ env.AGG }}/sources.repos
+      - name: Store meta data
+        uses: actions/cache/save@v4
+        with:
+          path: ${{ env.AGG }}
+          key: apt-repo-stage-1-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
   stage0-worker0:
     uses: ./.github/workflows/worker.yaml
-    if: success() || failure()
+    if: success()
     with:
+      depends: stage-1
       worker: stage0-worker0
   stage0:
     uses: ./.github/workflows/aggregate-debs.yaml
