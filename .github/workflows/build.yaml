@@ -4,11 +4,12 @@ on:
   workflow_dispatch:
   push:
 
+env:
+  AGG: /home/runner/apt_repo_dependencies
+
 jobs:
   stage-1:
     runs-on: ubuntu-22.04
-    env:
-      AGG: /home/runner/apt_repo_dependencies
     steps:
       - name: Check out the repo
         uses: actions/checkout@v4
@@ -734,3 +735,28 @@ jobs:
     needs: [stage16-worker0, stage16-worker1, stage16-worker2, stage16-worker3, stage16-worker4]
     with:
       stage: 16
+  deploy:
+    needs: stage16
+    if: success() || failure() # can get cancelled
+    runs-on: ubuntu-22.04
+    env:
+      ROS_DISTRO: one
+      DEB_DISTRO: jammy
+    steps:
+      - name: get apt packages from last job
+        uses: actions/cache/restore@v4
+        with:
+          path: ${{ env.AGG }}
+          key: apt-repo-${{ env.stage }}-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: |
+            apt-repo-${{ env.stage }}-${{ github.sha }}-${{ github.run_id }}
+      - name: move packages to repo
+        run: |
+          mkdir -p /home/runner/apt_repo
+          mv ${{ env.AGG }}/* /home/runner/apt_repo/
+      - uses: v4hn/ros-deb-builder-action/deploy@rosotest
+        if: always()
+        with:
+          BRANCH: ${{ env.DEB_DISTRO }}-${{ env.ROS_DISTRO }}-unstable
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SQUASH_HISTORY: true
