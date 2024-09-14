@@ -654,8 +654,90 @@ jobs:
     needs: [stage14-worker0, stage14-worker1, stage14-worker2, stage14-worker3, stage14-worker4]
     with:
       stage: 14
-  deploy:
+  stage15-worker0:
+    uses: ./.github/workflows/worker.yaml
+    if: success() || failure()
     needs: stage14
+    with:
+      worker: stage15-worker0
+      depends: stage14
+  stage15-worker1:
+    uses: ./.github/workflows/worker.yaml
+    if: success() || failure()
+    needs: stage14
+    with:
+      worker: stage15-worker1
+      depends: stage14
+  stage15-worker2:
+    uses: ./.github/workflows/worker.yaml
+    if: success() || failure()
+    needs: stage14
+    with:
+      worker: stage15-worker2
+      depends: stage14
+  stage15-worker3:
+    uses: ./.github/workflows/worker.yaml
+    if: success() || failure()
+    needs: stage14
+    with:
+      worker: stage15-worker3
+      depends: stage14
+  stage15-worker4:
+    uses: ./.github/workflows/worker.yaml
+    if: success() || failure()
+    needs: stage14
+    with:
+      worker: stage15-worker4
+      depends: stage14
+  stage15:
+    uses: ./.github/workflows/aggregate-debs.yaml
+    if: always() && !cancelled()
+    needs: [stage15-worker0, stage15-worker1, stage15-worker2, stage15-worker3, stage15-worker4]
+    with:
+      stage: 15
+  stage16-worker0:
+    uses: ./.github/workflows/worker.yaml
+    if: success() || failure()
+    needs: stage15
+    with:
+      worker: stage16-worker0
+      depends: stage15
+  stage16-worker1:
+    uses: ./.github/workflows/worker.yaml
+    if: success() || failure()
+    needs: stage15
+    with:
+      worker: stage16-worker1
+      depends: stage15
+  stage16-worker2:
+    uses: ./.github/workflows/worker.yaml
+    if: success() || failure()
+    needs: stage15
+    with:
+      worker: stage16-worker2
+      depends: stage15
+  stage16-worker3:
+    uses: ./.github/workflows/worker.yaml
+    if: success() || failure()
+    needs: stage15
+    with:
+      worker: stage16-worker3
+      depends: stage15
+  stage16-worker4:
+    uses: ./.github/workflows/worker.yaml
+    if: success() || failure()
+    needs: stage15
+    with:
+      worker: stage16-worker4
+      depends: stage15
+  stage16:
+    uses: ./.github/workflows/aggregate-debs.yaml
+    if: always() && !cancelled()
+    needs: [stage16-worker0, stage16-worker1, stage16-worker2, stage16-worker3, stage16-worker4]
+    with:
+      stage: 16
+  deploy:
+    needs: stage16
     if: success() || failure() # can get cancelled
     runs-on: ubuntu-22.04
     env:
@@ -666,9 +748,9 @@ jobs:
         uses: actions/cache/restore@v4
         with:
           path: ${{ env.AGG }}
-          key: apt-repo-stage14-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
+          key: apt-repo-stage16-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
           restore-keys: |
-            apt-repo-stage14-${{ github.sha }}-${{ github.run_id }}
+            apt-repo-stage16-${{ github.sha }}-${{ github.run_id }}
       - name: move packages to repo
         run: |
           mkdir -p /home/runner/apt_repo
