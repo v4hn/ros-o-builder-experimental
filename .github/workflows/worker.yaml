@@ -36,12 +36,11 @@ jobs:
           fi
       - name: Install YQ
         uses: dcarbone/install-yq-action@v1.1.1
-      - name: Prepare job
+      - name: List repositories
         run: |
           OPTS=$(yq ".\"${{ inputs.worker }}\".sbuild_options" jobs.yaml)
           [ "$OPTS" != "null" ] || OPTS=""
           [ -z "$OPTS" ] || echo "extra_sbuild_conf=$OPTS" >> $GITHUB_ENV
-          echo "extra_sbuild_conf: $OPTS"
 
           QUERY=$(
             echo -n '{ "repositories": {';
@@ -52,8 +51,9 @@ jobs:
             done
             echo -n "} }"
           )
-          echo "yq query: $QUERY"
           yq "$QUERY" sources.repos | tee worker-jobs.repos
+          echo "yq query: $QUERY"
+          echo "extra_sbuild_conf: $OPTS"
       - name: Build packages
         uses: v4hn/ros-deb-builder-action/build@rosotest
         timeout-minutes: 330
