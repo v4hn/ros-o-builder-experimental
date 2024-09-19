@@ -11,34 +11,45 @@ env:
 jobs:
   stage-1:
     runs-on: ubuntu-22.04
+    outputs:
+      workers: ${{ steps.worker.outputs.workers }}
     steps:
       - name: Check out the repo
         uses: actions/checkout@v4
-      - name: Investigate source repositories
+      - name: Clone sources
         run: |
           sudo add-apt-repository -y ppa:v-launchpad-jochen-sprickerhof-de/sbuild
           sudo apt update
           DEBIAN_FRONTEND=noninteractive sudo apt install -y vcstool catkin
           mkdir src
           vcs import --recursive --shallow --input sources.repos src
+      - name: Extract rosdep keys
+        run: |
           for PKG in $(catkin_topological_order --only-names); do
             printf "%s:\n  %s:\n  - %s\n" "$PKG" "${{ env.DISTRIBUTION }}" "ros-one-$(printf '%s' "$PKG" | tr '_' '-')" | tee -a local.yaml
           done
+      - name: List used workers
+        id: worker
+        run: |
+          cat jobs.yaml | sed -n '/^stage.*:$/ p'
+          echo "workers=$(cat jobs.yaml | sed -n '/^stage.*:$/ p' | tr -d '\n')" >> $GITHUB_OUTPUT
+      - name: Prepare meta data cache
+        run: |
           mkdir -p ${{ env.AGG }}
           mv local.yaml ${{ env.AGG }}/local.yaml
           cp sources.repos ${{ env.AGG }}/sources.repos
-      - name: Store meta data
+      - name: Store meta data cache
         uses: actions/cache/save@v4
         with:
           path: ${{ env.AGG }}
           key: apt-repo-stage-1-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
   stage0-worker0:
     uses: ./.github/workflows/worker.yaml
+    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage0-worker0' )
     needs: stage-1
-    if: success()
     with:
-      depends: stage-1
       worker: stage0-worker0
+      depends: stage-1
   stage0:
     uses: ./.github/workflows/aggregate-debs.yaml
     if: always() && !cancelled()
@@ -47,70 +58,70 @@ jobs:
       stage: 0
   stage1-worker0:
     uses: ./.github/workflows/worker.yaml
-    if: success() || failure()
+    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage1-worker0' )
     needs: stage0
     with:
       worker: stage1-worker0
       depends: stage0
   stage1-worker1:
     uses: ./.github/workflows/worker.yaml
-    if: success() || failure()
+    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage1-worker1' )
     needs: stage0
     with:
       worker: stage1-worker1
       depends: stage0
   stage1-worker2:
     uses: ./.github/workflows/worker.yaml
-    if: success() || failure()
+    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage1-worker2' )
     needs: stage0
     with:
       worker: stage1-worker2
       depends: stage0
   stage1-worker3:
     uses: ./.github/workflows/worker.yaml
-    if: success() || failure()
+    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage1-worker3' )
     needs: stage0
     with:
       worker: stage1-worker3
       depends: stage0
   stage1-worker4:
     uses: ./.github/workflows/worker.yaml
-    if: success() || failure()
+    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage1-worker4' )
     needs: stage0
     with:
       worker: stage1-worker4
       depends: stage0
   stage1-worker5:
     uses: ./.github/workflows/worker.yaml
-    if: success() || failure()
+    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage1-worker5' )
     needs: stage0
     with:
       worker: stage1-worker5
       depends: stage0
   stage1-worker6:
     uses: ./.github/workflows/worker.yaml
-    if: success() || failure()
+    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage1-worker6' )
     needs: stage0
     with:
       worker: stage1-worker6
       depends: stage0
   stage1-worker7:
     uses: ./.github/workflows/worker.yaml
-    if: success() || failure()
+    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage1-worker7' )
     needs: stage0
     with:
       worker: stage1-worker7
       depends: stage0
   stage1-worker8:
     uses: ./.github/workflows/worker.yaml
-    if: success() || failure()
+    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage1-worker8' )
     needs: stage0
     with:
       worker: stage1-worker8
       depends: stage0
   stage1-worker9:
     uses: ./.github/workflows/worker.yaml
-    if: success() || failure()
+    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage1-worker9' )
     needs: stage0
     with:
       worker: stage1-worker9
@@ -123,35 +134,35 @@ jobs:
       stage: 1
   stage2-worker0:
     uses: ./.github/workflows/worker.yaml
-    if: success() || failure()
+    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage2-worker0' )
     needs: stage1
     with:
       worker: stage2-worker0
       depends: stage1
   stage2-worker1:
     uses: ./.github/workflows/worker.yaml
-    if: success() || failure()
+    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage2-worker1' )
     needs: stage1
     with:
       worker: stage2-worker1
       depends: stage1
   stage2-worker2:
     uses: ./.github/workflows/worker.yaml
-    if: success() || failure()
+    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage2-worker2' )
     needs: stage1
     with:
       worker: stage2-worker2
       depends: stage1
   stage2-worker3:
     uses: ./.github/workflows/worker.yaml
-    if: success() || failure()
+    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage2-worker3' )
     needs: stage1
     with:
       worker: stage2-worker3
       depends: stage1
   stage2-worker4:
     uses: ./.github/workflows/worker.yaml
-    if: success() || failure()
+    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage2-worker4' )
     needs: stage1
     with:
       worker: stage2-worker4
@@ -164,35 +175,35 @@ jobs:
       stage: 2
   stage3-worker0:
     uses: ./.github/workflows/worker.yaml
-    if: success() || failure()
+    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage3-worker0' )
     needs: stage2
     with:
       worker: stage3-worker0
       depends: stage2
   stage3-worker1:
     uses: ./.github/workflows/worker.yaml
-    if: success() || failure()
+    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage3-worker1' )
     needs: stage2
     with:
       worker: stage3-worker1
       depends: stage2
   stage3-worker2:
     uses: ./.github/workflows/worker.yaml
-    if: success() || failure()
+    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage3-worker2' )
     needs: stage2
     with:
       worker: stage3-worker2
       depends: stage2
   stage3-worker3:
     uses: ./.github/workflows/worker.yaml
-    if: success() || failure()
+    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage3-worker3' )
     needs: stage2
     with:
       worker: stage3-worker3
       depends: stage2
   stage3-worker4:
     uses: ./.github/workflows/worker.yaml
-    if: success() || failure()
+    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage3-worker4' )
     needs: stage2
     with:
       worker: stage3-worker4
@@ -205,35 +216,35 @@ jobs:
       stage: 3
   stage4-worker0:
     uses: ./.github/workflows/worker.yaml
-    if: success() || failure()
+    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage4-worker0' )
     needs: stage3
     with:
       worker: stage4-worker0
       depends: stage3
   stage4-worker1:
     uses: ./.github/workflows/worker.yaml
-    if: success() || failure()
+    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage4-worker1' )
     needs: stage3
     with:
       worker: stage4-worker1
       depends: stage3
   stage4-worker2:
     uses: ./.github/workflows/worker.yaml
-    if: success() || failure()
+    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage4-worker2' )
     needs: stage3
     with:
       worker: stage4-worker2
       depends: stage3
   stage4-worker3:
     uses: ./.github/workflows/worker.yaml
-    if: success() || failure()
+    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage4-worker3' )
     needs: stage3
     with:
       worker: stage4-worker3
       depends: stage3
   stage4-worker4:
     uses: ./.github/workflows/worker.yaml
-    if: success() || failure()
+    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage4-worker4' )
     needs: stage3
     with:
       worker: stage4-worker4
@@ -246,35 +257,35 @@ jobs:
       stage: 4
   stage5-worker0:
     uses: ./.github/workflows/worker.yaml
-    if: success() || failure()
+    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage5-worker0' )
     needs: stage4
     with:
       worker: stage5-worker0
       depends: stage4
   stage5-worker1:
     uses: ./.github/workflows/worker.yaml
-    if: success() || failure()
+    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage5-worker1' )
     needs: stage4
     with:
       worker: stage5-worker1
       depends: stage4
   stage5-worker2:
     uses: ./.github/workflows/worker.yaml
-    if: success() || failure()
+    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage5-worker2' )
     needs: stage4
     with:
       worker: stage5-worker2
       depends: stage4
   stage5-worker3:
     uses: ./.github/workflows/worker.yaml
-    if: success() || failure()
+    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage5-worker3' )
     needs: stage4
     with:
       worker: stage5-worker3
       depends: stage4
   stage5-worker4:
     uses: ./.github/workflows/worker.yaml
-    if: success() || failure()
+    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage5-worker4' )
     needs: stage4
     with:
       worker: stage5-worker4
@@ -287,35 +298,35 @@ jobs:
       stage: 5
   stage6-worker0:
     uses: ./.github/workflows/worker.yaml
-    if: success() || failure()
+    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage6-worker0' )
     needs: stage5
     with:
       worker: stage6-worker0
       depends: stage5
   stage6-worker1:
     uses: ./.github/workflows/worker.yaml
-    if: success() || failure()
+    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage6-worker1' )
     needs: stage5
     with:
       worker: stage6-worker1
       depends: stage5
   stage6-worker2:
     uses: ./.github/workflows/worker.yaml
-    if: success() || failure()
+    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage6-worker2' )
     needs: stage5
     with:
       worker: stage6-worker2
       depends: stage5
   stage6-worker3:
     uses: ./.github/workflows/worker.yaml
-    if: success() || failure()
+    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage6-worker3' )
     needs: stage5
     with:
       worker: stage6-worker3
       depends: stage5
   stage6-worker4:
     uses: ./.github/workflows/worker.yaml
-    if: success() || failure()
+    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage6-worker4' )
     needs: stage5
     with:
       worker: stage6-worker4
@@ -328,35 +339,35 @@ jobs:
       stage: 6
   stage7-worker0:
     uses: ./.github/workflows/worker.yaml
-    if: success() || failure()
+    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage7-worker0' )
     needs: stage6
     with:
       worker: stage7-worker0
       depends: stage6
   stage7-worker1:
     uses: ./.github/workflows/worker.yaml
-    if: success() || failure()
+    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage7-worker1' )
     needs: stage6
     with:
       worker: stage7-worker1
       depends: stage6
   stage7-worker2:
     uses: ./.github/workflows/worker.yaml
-    if: success() || failure()
+    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage7-worker2' )
     needs: stage6
     with:
       worker: stage7-worker2
       depends: stage6
   stage7-worker3:
     uses: ./.github/workflows/worker.yaml
-    if: success() || failure()
+    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage7-worker3' )
     needs: stage6
     with:
       worker: stage7-worker3
       depends: stage6
   stage7-worker4:
     uses: ./.github/workflows/worker.yaml
-    if: success() || failure()
+    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage7-worker4' )
     needs: stage6
     with:
       worker: stage7-worker4
@@ -369,35 +380,35 @@ jobs:
       stage: 7
   stage8-worker0:
     uses: ./.github/workflows/worker.yaml
-    if: success() || failure()
+    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage8-worker0' )
     needs: stage7
     with:
       worker: stage8-worker0
       depends: stage7
   stage8-worker1:
     uses: ./.github/workflows/worker.yaml
-    if: success() || failure()
+    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage8-worker1' )
     needs: stage7
     with:
       worker: stage8-worker1
       depends: stage7
   stage8-worker2:
     uses: ./.github/workflows/worker.yaml
-    if: success() || failure()
+    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage8-worker2' )
     needs: stage7
     with:
       worker: stage8-worker2
       depends: stage7
   stage8-worker3:
     uses: ./.github/workflows/worker.yaml
-    if: success() || failure()
+    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage8-worker3' )
     needs: stage7
     with:
       worker: stage8-worker3
       depends: stage7
   stage8-worker4:
     uses: ./.github/workflows/worker.yaml
-    if: success() || failure()
+    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage8-worker4' )
     needs: stage7
     with:
       worker: stage8-worker4
@@ -410,35 +421,35 @@ jobs:
       stage: 8
   stage9-worker0:
     uses: ./.github/workflows/worker.yaml
-    if: success() || failure()
+    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage9-worker0' )
     needs: stage8
     with:
       worker: stage9-worker0
       depends: stage8
   stage9-worker1:
     uses: ./.github/workflows/worker.yaml
-    if: success() || failure()
+    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage9-worker1' )
     needs: stage8
     with:
       worker: stage9-worker1
       depends: stage8
   stage9-worker2:
     uses: ./.github/workflows/worker.yaml
-    if: success() || failure()
+    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage9-worker2' )
     needs: stage8
     with:
       worker: stage9-worker2
       depends: stage8
   stage9-worker3:
     uses: ./.github/workflows/worker.yaml
-    if: success() || failure()
+    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage9-worker3' )
     needs: stage8
     with:
       worker: stage9-worker3
       depends: stage8
   stage9-worker4:
     uses: ./.github/workflows/worker.yaml
-    if: success() || failure()
+    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage9-worker4' )
     needs: stage8
     with:
       worker: stage9-worker4
@@ -451,35 +462,35 @@ jobs:
       stage: 9
   stage10-worker0:
     uses: ./.github/workflows/worker.yaml
-    if: success() || failure()
+    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage10-worker0' )
     needs: stage9
     with:
       worker: stage10-worker0
       depends: stage9
   stage10-worker1:
     uses: ./.github/workflows/worker.yaml
-    if: success() || failure()
+    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage10-worker1' )
     needs: stage9
     with:
       worker: stage10-worker1
       depends: stage9
   stage10-worker2:
     uses: ./.github/workflows/worker.yaml
-    if: success() || failure()
+    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage10-worker2' )
     needs: stage9
     with:
       worker: stage10-worker2
       depends: stage9
   stage10-worker3:
     uses: ./.github/workflows/worker.yaml
-    if: success() || failure()
+    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage10-worker3' )
     needs: stage9
     with:
       worker: stage10-worker3
       depends: stage9
   stage10-worker4:
     uses: ./.github/workflows/worker.yaml
-    if: success() || failure()
+    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage10-worker4' )
     needs: stage9
     with:
       worker: stage10-worker4
@@ -492,35 +503,35 @@ jobs:
       stage: 10
   stage11-worker0:
     uses: ./.github/workflows/worker.yaml
-    if: success() || failure()
+    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage11-worker0' )
     needs: stage10
     with:
       worker: stage11-worker0
       depends: stage10
   stage11-worker1:
     uses: ./.github/workflows/worker.yaml
-    if: success() || failure()
+    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage11-worker1' )
     needs: stage10
     with:
       worker: stage11-worker1
       depends: stage10
   stage11-worker2:
     uses: ./.github/workflows/worker.yaml
-    if: success() || failure()
+    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage11-worker2' )
     needs: stage10
     with:
       worker: stage11-worker2
       depends: stage10
   stage11-worker3:
     uses: ./.github/workflows/worker.yaml
-    if: success() || failure()
+    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage11-worker3' )
     needs: stage10
     with:
       worker: stage11-worker3
       depends: stage10
   stage11-worker4:
     uses: ./.github/workflows/worker.yaml
-    if: success() || failure()
+    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage11-worker4' )
     needs: stage10
     with:
       worker: stage11-worker4
@@ -533,35 +544,35 @@ jobs:
       stage: 11
   stage12-worker0:
     uses: ./.github/workflows/worker.yaml
-    if: success() || failure()
+    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage12-worker0' )
     needs: stage11
     with:
       worker: stage12-worker0
       depends: stage11
   stage12-worker1:
     uses: ./.github/workflows/worker.yaml
-    if: success() || failure()
+    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage12-worker1' )
     needs: stage11
     with:
       worker: stage12-worker1
       depends: stage11
   stage12-worker2:
     uses: ./.github/workflows/worker.yaml
-    if: success() || failure()
+    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage12-worker2' )
     needs: stage11
     with:
       worker: stage12-worker2
       depends: stage11
   stage12-worker3:
     uses: ./.github/workflows/worker.yaml
-    if: success() || failure()
+    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage12-worker3' )
     needs: stage11
     with:
       worker: stage12-worker3
       depends: stage11
   stage12-worker4:
     uses: ./.github/workflows/worker.yaml
-    if: success() || failure()
+    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage12-worker4' )
     needs: stage11
     with:
       worker: stage12-worker4
@@ -574,35 +585,35 @@ jobs:
       stage: 12
   stage13-worker0:
     uses: ./.github/workflows/worker.yaml
-    if: success() || failure()
+    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage13-worker0' )
     needs: stage12
     with:
       worker: stage13-worker0
       depends: stage12
   stage13-worker1:
     uses: ./.github/workflows/worker.yaml
-    if: success() || failure()
+    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage13-worker1' )
     needs: stage12
     with:
       worker: stage13-worker1
       depends: stage12
   stage13-worker2:
     uses: ./.github/workflows/worker.yaml
-    if: success() || failure()
+    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage13-worker2' )
     needs: stage12
     with:
       worker: stage13-worker2
       depends: stage12
   stage13-worker3:
     uses: ./.github/workflows/worker.yaml
-    if: success() || failure()
+    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage13-worker3' )
     needs: stage12
     with:
       worker: stage13-worker3
       depends: stage12
   stage13-worker4:
     uses: ./.github/workflows/worker.yaml
-    if: success() || failure()
+    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage13-worker4' )
     needs: stage12
     with:
       worker: stage13-worker4
@@ -615,35 +626,35 @@ jobs:
       stage: 13
   stage14-worker0:
     uses: ./.github/workflows/worker.yaml
-    if: success() || failure()
+    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage14-worker0' )
     needs: stage13
     with:
       worker: stage14-worker0
       depends: stage13
   stage14-worker1:
     uses: ./.github/workflows/worker.yaml
-    if: success() || failure()
+    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage14-worker1' )
     needs: stage13
     with:
       worker: stage14-worker1
       depends: stage13
   stage14-worker2:
     uses: ./.github/workflows/worker.yaml
-    if: success() || failure()
+    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage14-worker2' )
     needs: stage13
     with:
       worker: stage14-worker2
       depends: stage13
   stage14-worker3:
     uses: ./.github/workflows/worker.yaml
-    if: success() || failure()
+    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage14-worker3' )
     needs: stage13
     with:
       worker: stage14-worker3
       depends: stage13
   stage14-worker4:
     uses: ./.github/workflows/worker.yaml
-    if: success() || failure()
+    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage14-worker4' )
     needs: stage13
     with:
       worker: stage14-worker4
@@ -656,35 +667,35 @@ jobs:
       stage: 14
   stage15-worker0:
     uses: ./.github/workflows/worker.yaml
-    if: success() || failure()
+    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage15-worker0' )
     needs: stage14
     with:
       worker: stage15-worker0
       depends: stage14
   stage15-worker1:
     uses: ./.github/workflows/worker.yaml
-    if: success() || failure()
+    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage15-worker1' )
     needs: stage14
     with:
       worker: stage15-worker1
       depends: stage14
   stage15-worker2:
     uses: ./.github/workflows/worker.yaml
-    if: success() || failure()
+    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage15-worker2' )
     needs: stage14
     with:
       worker: stage15-worker2
       depends: stage14
   stage15-worker3:
     uses: ./.github/workflows/worker.yaml
-    if: success() || failure()
+    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage15-worker3' )
     needs: stage14
     with:
       worker: stage15-worker3
       depends: stage14
   stage15-worker4:
     uses: ./.github/workflows/worker.yaml
-    if: success() || failure()
+    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage15-worker4' )
     needs: stage14
     with:
       worker: stage15-worker4
@@ -697,35 +708,35 @@ jobs:
       stage: 15
   stage16-worker0:
     uses: ./.github/workflows/worker.yaml
-    if: success() || failure()
+    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage16-worker0' )
     needs: stage15
     with:
       worker: stage16-worker0
       depends: stage15
   stage16-worker1:
     uses: ./.github/workflows/worker.yaml
-    if: success() || failure()
+    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage16-worker1' )
     needs: stage15
     with:
       worker: stage16-worker1
       depends: stage15
   stage16-worker2:
     uses: ./.github/workflows/worker.yaml
-    if: success() || failure()
+    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage16-worker2' )
     needs: stage15
     with:
       worker: stage16-worker2
       depends: stage15
   stage16-worker3:
     uses: ./.github/workflows/worker.yaml
-    if: success() || failure()
+    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage16-worker3' )
     needs: stage15
     with:
       worker: stage16-worker3
       depends: stage15
   stage16-worker4:
     uses: ./.github/workflows/worker.yaml
-    if: success() || failure()
+    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage16-worker4' )
     needs: stage15
     with:
       worker: stage16-worker4
@@ -738,7 +749,7 @@ jobs:
       stage: 16
   deploy:
     needs: stage16
-    if: success() || failure() # can get cancelled
+    if: always() && !cancelled()
     runs-on: ubuntu-22.04
     env:
       ROS_DISTRO: one
@@ -756,7 +767,6 @@ jobs:
           mkdir -p /home/runner/apt_repo
           mv ${{ env.AGG }}/* /home/runner/apt_repo/
       - uses: v4hn/ros-deb-builder-action/deploy@rosotest
-        if: always()
         with:
           BRANCH: ${{ env.DEB_DISTRO }}-${{ env.ROS_DISTRO }}-unstable
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
