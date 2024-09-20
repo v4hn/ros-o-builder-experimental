@@ -27,56 +27,55 @@ jobs:
           restore-keys: |
             apt-repo-${{ env.previous_stage }}-${{ github.sha }}-${{ github.run_id }}
       - name: Aggregate worker
-        uses: ./.github/workflows/aggregate-worker.yaml
+        uses: ./.github/actions/aggregate-worker
         with:
           stage: ${{ env.stage }}
           worker: worker0
       - name: Aggregate worker
-        uses: ./.github/workflows/aggregate-worker.yaml
+        uses: ./.github/actions/aggregate-worker
         with:
           stage: ${{ env.stage }}
           worker: worker1
       - name: Aggregate worker
-        uses: ./.github/workflows/aggregate-worker.yaml
+        uses: ./.github/actions/aggregate-worker
         with:
           stage: ${{ env.stage }}
           worker: worker2
       - name: Aggregate worker
-        uses: ./.github/workflows/aggregate-worker.yaml
+        uses: ./.github/actions/aggregate-worker
         with:
           stage: ${{ env.stage }}
           worker: worker3
       - name: Aggregate worker
-        uses: ./.github/workflows/aggregate-worker.yaml
+        uses: ./.github/actions/aggregate-worker
         with:
           stage: ${{ env.stage }}
           worker: worker4
       - name: Aggregate worker
-        uses: ./.github/workflows/aggregate-worker.yaml
+        uses: ./.github/actions/aggregate-worker
         with:
           stage: ${{ env.stage }}
           worker: worker5
       - name: Aggregate worker
-        uses: ./.github/workflows/aggregate-worker.yaml
+        uses: ./.github/actions/aggregate-worker
         with:
           stage: ${{ env.stage }}
           worker: worker6
       - name: Aggregate worker
-        uses: ./.github/workflows/aggregate-worker.yaml
+        uses: ./.github/actions/aggregate-worker
         with:
           stage: ${{ env.stage }}
           worker: worker7
       - name: Aggregate worker
-        uses: ./.github/workflows/aggregate-worker.yaml
+        uses: ./.github/actions/aggregate-worker
         with:
           stage: ${{ env.stage }}
           worker: worker8
       - name: Aggregate worker
-        uses: ./.github/workflows/aggregate-worker.yaml
+        uses: ./.github/actions/aggregate-worker
         with:
           stage: ${{ env.stage }}
           worker: worker9
-
       - name: Store apt repo
         uses: actions/cache/save@v4
         if: always()
