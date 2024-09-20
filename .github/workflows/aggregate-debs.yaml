@@ -10,7 +10,6 @@ jobs:
     runs-on: ubuntu-22.04
     env:
       SEGMENT_DOWNLOAD_TIMEOUT_MINS: 10
-      REPO: /home/runner/apt_repo
       AGG: /home/runner/apt_repo_dependencies
       stage: stage${{ inputs.stage }}
     steps:
@@ -27,190 +26,57 @@ jobs:
           key: apt-repo-${{ env.previous_stage }}-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
           restore-keys: |
             apt-repo-${{ env.previous_stage }}-${{ github.sha }}-${{ github.run_id }}
-      - name: Fetch results of worker0
-        env:
+      - name: Aggregate worker
+        uses: ./.github/workflows/aggregate-worker.yaml
+        with:
+          stage: ${{ env.stage }}
           worker: worker0
-        uses: actions/cache/restore@v4
+      - name: Aggregate worker
+        uses: ./.github/workflows/aggregate-worker.yaml
         with:
-          path: ${{ env.REPO }}
-          key: apt-repo-${{ env.stage }}-${{ env.worker }}-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
-          restore-keys: |
-            apt-repo-${{ env.stage }}-${{ env.worker }}-${{ github.sha }}-${{ github.run_id }}
-      - name: Fetch results of worker1
-        env:
+          stage: ${{ env.stage }}
           worker: worker1
-        uses: actions/cache/restore@v4
+      - name: Aggregate worker
+        uses: ./.github/workflows/aggregate-worker.yaml
         with:
-          path: ${{ env.REPO }}
-          key: apt-repo-${{ env.stage }}-${{ env.worker }}-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
-          restore-keys: |
-            apt-repo-${{ env.stage }}-${{ env.worker }}-${{ github.sha }}-${{ github.run_id }}
-      - name: Fetch results of worker2
-        env:
+          stage: ${{ env.stage }}
           worker: worker2
-        uses: actions/cache/restore@v4
+      - name: Aggregate worker
+        uses: ./.github/workflows/aggregate-worker.yaml
         with:
-          path: ${{ env.REPO }}
-          key: apt-repo-${{ env.stage }}-${{ env.worker }}-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
-          restore-keys: |
-            apt-repo-${{ env.stage }}-${{ env.worker }}-${{ github.sha }}-${{ github.run_id }}
-      - name: Fetch results of worker3
-        env:
+          stage: ${{ env.stage }}
           worker: worker3
-        uses: actions/cache/restore@v4
+      - name: Aggregate worker
+        uses: ./.github/workflows/aggregate-worker.yaml
         with:
-          path: ${{ env.REPO }}
-          key: apt-repo-${{ env.stage }}-${{ env.worker }}-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
-          restore-keys: |
-            apt-repo-${{ env.stage }}-${{ env.worker }}-${{ github.sha }}-${{ github.run_id }}
-      - name: Fetch results of worker4
-        env:
+          stage: ${{ env.stage }}
           worker: worker4
-        uses: actions/cache/restore@v4
+      - name: Aggregate worker
+        uses: ./.github/workflows/aggregate-worker.yaml
         with:
-          path: ${{ env.REPO }}
-          key: apt-repo-${{ env.stage }}-${{ env.worker }}-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
-          restore-keys: |
-            apt-repo-${{ env.stage }}-${{ env.worker }}-${{ github.sha }}-${{ github.run_id }}
-      - name: Fetch results of worker5
-        env:
+          stage: ${{ env.stage }}
           worker: worker5
-        uses: actions/cache/restore@v4
+      - name: Aggregate worker
+        uses: ./.github/workflows/aggregate-worker.yaml
         with:
-          path: ${{ env.REPO }}
-          key: apt-repo-${{ env.stage }}-${{ env.worker }}-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
-          restore-keys: |
-            apt-repo-${{ env.stage }}-${{ env.worker }}-${{ github.sha }}-${{ github.run_id }}
-      - name: Fetch results of worker6
-        env:
+          stage: ${{ env.stage }}
           worker: worker6
-        uses: actions/cache/restore@v4
+      - name: Aggregate worker
+        uses: ./.github/workflows/aggregate-worker.yaml
         with:
-          path: ${{ env.REPO }}
-          key: apt-repo-${{ env.stage }}-${{ env.worker }}-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
-          restore-keys: |
-            apt-repo-${{ env.stage }}-${{ env.worker }}-${{ github.sha }}-${{ github.run_id }}
-      - name: Fetch results of worker7
-        env:
+          stage: ${{ env.stage }}
           worker: worker7
-        uses: actions/cache/restore@v4
+      - name: Aggregate worker
+        uses: ./.github/workflows/aggregate-worker.yaml
         with:
-          path: ${{ env.REPO }}
-          key: apt-repo-${{ env.stage }}-${{ env.worker }}-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
-          restore-keys: |
-            apt-repo-${{ env.stage }}-${{ env.worker }}-${{ github.sha }}-${{ github.run_id }}
-      - name: Fetch results of worker8
-        env:
+          stage: ${{ env.stage }}
           worker: worker8
-        uses: actions/cache/restore@v4
+      - name: Aggregate worker
+        uses: ./.github/workflows/aggregate-worker.yaml
         with:
-          path: ${{ env.REPO }}
-          key: apt-repo-${{ env.stage }}-${{ env.worker }}-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
-          restore-keys: |
-            apt-repo-${{ env.stage }}-${{ env.worker }}-${{ github.sha }}-${{ github.run_id }}
-      - name: Fetch results of worker9
-        env:
+          stage: ${{ env.stage }}
           worker: worker9
-        uses: actions/cache/restore@v4
-        with:
-          path: ${{ env.REPO }}
-          key: apt-repo-${{ env.stage }}-${{ env.worker }}-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
-          restore-keys: |
-            apt-repo-${{ env.stage }}-${{ env.worker }}-${{ github.sha }}-${{ github.run_id }}
-      - name: Fetch results of worker10
-        env:
-          worker: worker10
-        uses: actions/cache/restore@v4
-        with:
-          path: ${{ env.REPO }}
-          key: apt-repo-${{ env.stage }}-${{ env.worker }}-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
-          restore-keys: |
-            apt-repo-${{ env.stage }}-${{ env.worker }}-${{ github.sha }}-${{ github.run_id }}
-      - name: Fetch results of worker11
-        env:
-          worker: worker11
-        uses: actions/cache/restore@v4
-        with:
-          path: ${{ env.REPO }}
-          key: apt-repo-${{ env.stage }}-${{ env.worker }}-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
-          restore-keys: |
-            apt-repo-${{ env.stage }}-${{ env.worker }}-${{ github.sha }}-${{ github.run_id }}
-      - name: Fetch results of worker12
-        env:
-          worker: worker12
-        uses: actions/cache/restore@v4
-        with:
-          path: ${{ env.REPO }}
-          key: apt-repo-${{ env.stage }}-${{ env.worker }}-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
-          restore-keys: |
-            apt-repo-${{ env.stage }}-${{ env.worker }}-${{ github.sha }}-${{ github.run_id }}
-      - name: Fetch results of worker13
-        env:
-          worker: worker13
-        uses: actions/cache/restore@v4
-        with:
-          path: ${{ env.REPO }}
-          key: apt-repo-${{ env.stage }}-${{ env.worker }}-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
-          restore-keys: |
-            apt-repo-${{ env.stage }}-${{ env.worker }}-${{ github.sha }}-${{ github.run_id }}
-      - name: Fetch results of worker14
-        env:
-          worker: worker14
-        uses: actions/cache/restore@v4
-        with:
-          path: ${{ env.REPO }}
-          key: apt-repo-${{ env.stage }}-${{ env.worker }}-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
-          restore-keys: |
-            apt-repo-${{ env.stage }}-${{ env.worker }}-${{ github.sha }}-${{ github.run_id }}
-      - name: Fetch results of worker15
-        env:
-          worker: worker15
-        uses: actions/cache/restore@v4
-        with:
-          path: ${{ env.REPO }}
-          key: apt-repo-${{ env.stage }}-${{ env.worker }}-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
-          restore-keys: |
-            apt-repo-${{ env.stage }}-${{ env.worker }}-${{ github.sha }}-${{ github.run_id }}
-      - name: Fetch results of worker16
-        env:
-          worker: worker16
-        uses: actions/cache/restore@v4
-        with:
-          path: ${{ env.REPO }}
-          key: apt-repo-${{ env.stage }}-${{ env.worker }}-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
-          restore-keys: |
-            apt-repo-${{ env.stage }}-${{ env.worker }}-${{ github.sha }}-${{ github.run_id }}
-      - name: Fetch results of worker17
-        env:
-          worker: worker17
-        uses: actions/cache/restore@v4
-        with:
-          path: ${{ env.REPO }}
-          key: apt-repo-${{ env.stage }}-${{ env.worker }}-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
-          restore-keys: |
-            apt-repo-${{ env.stage }}-${{ env.worker }}-${{ github.sha }}-${{ github.run_id }}
-      - name: Fetch results of worker18
-        env:
-          worker: worker18
-        uses: actions/cache/restore@v4
-        with:
-          path: ${{ env.REPO }}
-          key: apt-repo-${{ env.stage }}-${{ env.worker }}-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
-          restore-keys: |
-            apt-repo-${{ env.stage }}-${{ env.worker }}-${{ github.sha }}-${{ github.run_id }}
-      - name: Fetch results of worker19
-        env:
-          worker: worker19
-        uses: actions/cache/restore@v4
-        with:
-          path: ${{ env.REPO }}
-          key: apt-repo-${{ env.stage }}-${{ env.worker }}-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
-          restore-keys: |
-            apt-repo-${{ env.stage }}-${{ env.worker }}-${{ github.sha }}-${{ github.run_id }}
-      - name: Aggregate files
-        run: |
-          rm ${{ env.REPO }}/local.yaml
-          mv ${{ env.REPO }}/* ${{ env.AGG }}
+
       - name: Store apt repo
         uses: actions/cache/save@v4
         if: always()

@@ -1,0 +1,40 @@
+on:
+  workflow_call:
+    inputs:
+      stage:
+        type: string
+        required: true
+      worker:
+        type: string
+        required: true
+
+jobs:
+  worker:
+    runs-on: ubuntu-22.04
+    env:
+      SEGMENT_DOWNLOAD_TIMEOUT_MINS: 10
+      REPO: /home/runner/apt_repo
+      AGG: /home/runner/apt_repo_dependencies
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v4
+      - name: Fetch results of ${{ inputs.worker }}
+        env:
+          worker: ${{ inputs.worker }}
+        uses: actions/cache/restore@v4
+        with:
+          path: ${{ env.REPO }}
+          key: apt-repo-${{ inputs.stage }}-${{ inputs.worker }}-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: |
+            apt-repo-${{ inputs.stage }}-${{ inputs.worker }}-${{ github.sha }}-${{ github.run_id }}
+      - name: Aggregate files
+        run: |
+          cat ${{ env.REPO }}/pkg_build_status.csv >> ${{ env.AGG }}/pkg_build_status.csv
+          cat ${{ env.REPO }}/sources.repos |
+            if [ -f ${{ env.AGG }}/sources.repos ]; then
+              tail -n+2 # skip "repositories:"
+            else
+              cat
+            fi | tee -a ${{ env.AGG }}/sources.repos
+          rm -f ${{ env.REPO }}/pkg_build_status.csv ${{ env.REPO }}/sources.repos ${{ env.REPO }}/local.yaml
+          mv ${{ env.REPO }}/* ${{ env.AGG }}
