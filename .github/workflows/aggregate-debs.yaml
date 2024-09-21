@@ -10,6 +10,7 @@ jobs:
     runs-on: ubuntu-22.04
     env:
       SEGMENT_DOWNLOAD_TIMEOUT_MINS: 10
+      REPO: /home/runner/apt_repo
       AGG: /home/runner/apt_repo_dependencies
       stage: stage${{ inputs.stage }}
     steps:
