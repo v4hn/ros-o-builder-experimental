@@ -7,7 +7,7 @@ on:
 
 jobs:
   aggregate:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     env:
       SEGMENT_DOWNLOAD_TIMEOUT_MINS: 10
       REPO: /home/runner/apt_repo

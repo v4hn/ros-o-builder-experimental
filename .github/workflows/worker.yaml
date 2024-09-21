@@ -9,11 +9,10 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     env:
       ROS_DISTRO: one
       DEB_DISTRO: jammy
-      CCACHE_PATH: /home/runner/.cache/ccache
       SEGMENT_DOWNLOAD_TIMEOUT_MINS: 10
     steps:
       - name: Check out the repo
@@ -60,7 +59,7 @@ jobs:
         with:
           ROS_DISTRO: ${{ env.ROS_DISTRO }}
           DEB_DISTRO: ${{ env.DEB_DISTRO }}
-          SBUILD_CONF: "$verbose = 1; $extra_packages = ['/home/runner/apt_repo_dependencies']; ${{ env.extra_sbuild_conf }}"
+          SBUILD_CONF: "$extra_packages = ['/home/runner/apt_repo_dependencies']; $enable_network = 1; ${{ env.extra_sbuild_conf }}"
           ROSDEP_SOURCE: rosdep.yaml
           REPOS_FILE: worker-jobs.repos
           CONTINUE_ON_ERROR: true
