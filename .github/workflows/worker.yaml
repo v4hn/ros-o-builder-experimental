@@ -51,7 +51,6 @@ jobs:
             echo -n "} }"
           )
           yq "$QUERY" sources.repos | tee worker-jobs.repos
-          echo "yq query: $QUERY"
           echo "extra_sbuild_conf: $OPTS"
       - name: Build packages
         uses: v4hn/ros-deb-builder-action/build@rosotest
