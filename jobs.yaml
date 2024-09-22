@@ -7,71 +7,131 @@ stage1-worker0:
   packages: 5
   jobs: ["roscpp_core"]
 stage1-worker1:
-  repositories: 4
-  packages: 4
-  jobs: ["random_numbers", "qwt_dependency", "rosbag_migration_rule", "Stage"]
+  repositories: 2
+  packages: 2
+  jobs: ["qwt_dependency", "ivcon"]
 stage1-worker2:
-  repositories: 3
-  packages: 3
-  jobs: ["cmake_modules", "openslam_gmapping", "soem"]
+  repositories: 2
+  packages: 2
+  jobs: ["soem", "media_export"]
 stage1-worker3:
-  repositories: 3
-  packages: 3
-  jobs: ["apriltag", "code_coverage", "gl_dependency"]
+  repositories: 2
+  packages: 2
+  jobs: ["cmake_modules", "prosilica_gige_sdk"]
 stage1-worker4:
-  repositories: 3
-  packages: 3
-  jobs: ["ruckig", "genmsg", "pybind11_catkin"]
+  repositories: 2
+  packages: 2
+  jobs: ["ros_industrial_cmake_boilerplate", "rosbag_migration_rule"]
 stage1-worker5:
-  repositories: 3
-  packages: 3
-  jobs: ["ros_industrial_cmake_boilerplate", "urg_c", "eml"]
+  repositories: 2
+  packages: 2
+  jobs: ["Stage", "apriltag"]
 stage1-worker6:
-  repositories: 3
-  packages: 3
-  jobs: ["ivcon", "prosilica_gige_sdk", "roslint"]
+  repositories: 1
+  packages: 1
+  jobs: ["urg_c"]
 stage1-worker7:
-  repositories: 3
-  packages: 3
-  jobs: ["webkit_dependency", "media_export", "convex_decomposition"]
+  repositories: 1
+  packages: 1
+  jobs: ["code_coverage"]
 stage1-worker8:
   repositories: 1
   packages: 1
-  jobs: ["ompl"]
-  sbuild_options: ""
+  jobs: ["pybind11_catkin"]
 stage1-worker9:
+  repositories: 1
+  packages: 1
+  jobs: ["random_numbers"]
+stage1-worker10:
+  repositories: 1
+  packages: 1
+  jobs: ["eml"]
+stage1-worker11:
+  repositories: 1
+  packages: 1
+  jobs: ["roslint"]
+stage1-worker12:
+  repositories: 1
+  packages: 1
+  jobs: ["openslam_gmapping"]
+stage1-worker13:
+  repositories: 1
+  packages: 1
+  jobs: ["convex_decomposition"]
+stage1-worker14:
+  repositories: 1
+  packages: 1
+  jobs: ["genmsg"]
+stage1-worker15:
+  repositories: 1
+  packages: 1
+  jobs: ["gl_dependency"]
+stage1-worker16:
+  repositories: 1
+  packages: 1
+  jobs: ["ruckig"]
+stage1-worker17:
+  repositories: 1
+  packages: 1
+  jobs: ["webkit_dependency"]
+stage1-worker18:
   repositories: 1
   packages: 1
   jobs: ["eigenpy"]
   sbuild_options: "$dpkg_buildpackage_user_options = ['--jobs=3'];"
+stage1-worker19:
+  repositories: 1
+  packages: 1
+  jobs: ["ompl"]
+  sbuild_options: ""
 stage2-worker0:
-  repositories: 2
-  packages: 2
-  jobs: ["eigen_stl_containers", "class_loader"]
+  repositories: 1
+  packages: 1
+  jobs: ["eigen_stl_containers"]
 stage2-worker1:
-  repositories: 2
-  packages: 2
-  jobs: ["genpy", "opw_kinematics"]
+  repositories: 1
+  packages: 1
+  jobs: ["genlisp"]
 stage2-worker2:
-  repositories: 2
-  packages: 2
-  jobs: ["geneus", "gennodejs"]
+  repositories: 1
+  packages: 1
+  jobs: ["gennodejs"]
 stage2-worker3:
-  repositories: 2
-  packages: 2
-  jobs: ["genlisp", "gencpp"]
+  repositories: 1
+  packages: 1
+  jobs: ["gencpp"]
 stage2-worker4:
-  repositories: 2
-  packages: 2
-  jobs: ["rospack", "rosdoc_lite"]
+  repositories: 1
+  packages: 1
+  jobs: ["opw_kinematics"]
+stage2-worker5:
+  repositories: 1
+  packages: 1
+  jobs: ["class_loader"]
+stage2-worker6:
+  repositories: 1
+  packages: 1
+  jobs: ["rosdoc_lite"]
+stage2-worker7:
+  repositories: 1
+  packages: 1
+  jobs: ["rospack"]
+stage2-worker8:
+  repositories: 1
+  packages: 1
+  jobs: ["geneus"]
+stage2-worker9:
+  repositories: 1
+  packages: 1
+  jobs: ["genpy"]
 stage3-worker0:
   repositories: 1
   packages: 1
-  jobs: ["message_generation"]
+  jobs: ["message_runtime"]
 stage3-worker1:
   repositories: 1
   packages: 1
-  jobs: ["message_runtime"]
+  jobs: ["message_generation"]
 stage4-worker0:
   repositories: 1
   packages: 11
@@ -85,41 +145,49 @@ stage5-worker0:
   packages: 2
   jobs: ["ros_comm_msgs"]
 stage5-worker1:
-  repositories: 2
-  packages: 2
-  jobs: ["rosconsole", "python_qt_binding"]
+  repositories: 1
+  packages: 1
+  jobs: ["angles"]
 stage5-worker2:
-  repositories: 2
-  packages: 2
-  jobs: ["four_wheel_steering_msgs", "angles"]
+  repositories: 1
+  packages: 1
+  jobs: ["rosconsole"]
 stage5-worker3:
   repositories: 1
   packages: 1
-  jobs: ["euslisp"]
+  jobs: ["python_qt_binding"]
 stage5-worker4:
+  repositories: 1
+  packages: 1
+  jobs: ["euslisp"]
+stage5-worker5:
+  repositories: 1
+  packages: 1
+  jobs: ["four_wheel_steering_msgs"]
+stage5-worker6:
   repositories: 1
   packages: 1
   jobs: ["plotjuggler_msgs"]
 stage6-worker0:
   repositories: 1
   packages: 1
-  jobs: ["pluginlib"]
+  jobs: ["resource_retriever"]
 stage6-worker1:
   repositories: 1
   packages: 1
-  jobs: ["jskeus"]
+  jobs: ["roslisp"]
 stage6-worker2:
   repositories: 1
   packages: 1
-  jobs: ["resource_retriever"]
+  jobs: ["rosconsole_bridge"]
 stage6-worker3:
   repositories: 1
   packages: 1
-  jobs: ["rosconsole_bridge"]
+  jobs: ["pluginlib"]
 stage6-worker4:
   repositories: 1
   packages: 1
-  jobs: ["roslisp"]
+  jobs: ["jskeus"]
 stage7-worker0:
   repositories: 2
   packages: 42
@@ -133,145 +201,489 @@ stage7-worker2:
   packages: 5
   jobs: ["ros_emacs_utils"]
 stage8-worker0:
-  repositories: 6
-  packages: 12
-  jobs: ["bond_core", "urdf", "sparse_bundle_adjustment", "filters", "xacro", "pcl_msgs"]
+  repositories: 1
+  packages: 6
+  jobs: ["bond_core"]
 stage8-worker1:
-  repositories: 6
-  packages: 12
-  jobs: ["baxter_common", "pal_statistics", "pr2_mechanism_msgs", "ml_classifiers", "geometric_shapes", "PlotJuggler"]
+  repositories: 1
+  packages: 5
+  jobs: ["image_common"]
 stage8-worker2:
-  repositories: 6
-  packages: 12
-  jobs: ["image_common", "joint_state_publisher", "navigation_msgs", "ethercat_grant", "backward_ros", "urdfdom_py"]
+  repositories: 1
+  packages: 5
+  jobs: ["ros_realtime"]
 stage8-worker3:
-  repositories: 7
-  packages: 12
-  jobs: ["ros_realtime", "actionlib", "object_recognition_msgs", "rosauth", "graph_msgs", "dynamic_reconfigure", "control_msgs"]
+  repositories: 1
+  packages: 5
+  jobs: ["baxter_common"]
 stage8-worker4:
-  repositories: 6
-  packages: 12
-  jobs: ["ros_tutorials", "vision_opencv", "view_controller_msgs", "octomap_msgs", "ros_pytest", "ros_type_introspection"]
+  repositories: 1
+  packages: 4
+  jobs: ["vision_opencv"]
+stage8-worker5:
+  repositories: 1
+  packages: 4
+  jobs: ["ros_tutorials"]
+stage8-worker6:
+  repositories: 1
+  packages: 3
+  jobs: ["pal_statistics"]
+stage8-worker7:
+  repositories: 2
+  packages: 3
+  jobs: ["joint_state_publisher", "rosauth"]
+stage8-worker8:
+  repositories: 2
+  packages: 3
+  jobs: ["actionlib", "graph_msgs"]
+stage8-worker9:
+  repositories: 1
+  packages: 2
+  jobs: ["urdf"]
+stage8-worker10:
+  repositories: 1
+  packages: 2
+  jobs: ["navigation_msgs"]
+stage8-worker11:
+  repositories: 2
+  packages: 2
+  jobs: ["backward_ros", "dynamic_reconfigure"]
+stage8-worker12:
+  repositories: 2
+  packages: 2
+  jobs: ["geometric_shapes", "pr2_mechanism_msgs"]
+stage8-worker13:
+  repositories: 2
+  packages: 2
+  jobs: ["object_recognition_msgs", "xacro"]
+stage8-worker14:
+  repositories: 2
+  packages: 2
+  jobs: ["control_msgs", "sparse_bundle_adjustment"]
+stage8-worker15:
+  repositories: 2
+  packages: 2
+  jobs: ["view_controller_msgs", "pcl_msgs"]
+stage8-worker16:
+  repositories: 2
+  packages: 2
+  jobs: ["ros_type_introspection", "filters"]
+stage8-worker17:
+  repositories: 2
+  packages: 2
+  jobs: ["ethercat_grant", "ml_classifiers"]
+stage8-worker18:
+  repositories: 2
+  packages: 2
+  jobs: ["ros_pytest", "urdfdom_py"]
+stage8-worker19:
+  repositories: 2
+  packages: 2
+  jobs: ["PlotJuggler", "octomap_msgs"]
 stage9-worker0:
-  repositories: 4
-  packages: 15
-  jobs: ["geometry2", "moveit_msgs", "srdfdom", "py_binding_tools"]
+  repositories: 1
+  packages: 12
+  jobs: ["geometry2"]
 stage9-worker1:
-  repositories: 4
-  packages: 15
-  jobs: ["calibration", "kdl_parser", "usb_cam", "open_karto"]
+  repositories: 1
+  packages: 11
+  jobs: ["calibration"]
 stage9-worker2:
-  repositories: 5
-  packages: 14
-  jobs: ["jsk_common_msgs", "audio_common", "urdf_geometry_parser", "realtime_tools", "camera_info_manager_py"]
+  repositories: 1
+  packages: 6
+  jobs: ["jsk_common_msgs"]
 stage9-worker3:
-  repositories: 3
-  packages: 14
-  jobs: ["nodelet_core", "teleop_tools", "executive_smach"]
+  repositories: 1
+  packages: 5
+  jobs: ["pr2_common"]
 stage9-worker4:
-  repositories: 3
-  packages: 14
-  jobs: ["dynamixel_motor", "pr2_common", "image_transport_plugins"]
+  repositories: 1
+  packages: 5
+  jobs: ["teleop_tools"]
+stage9-worker5:
+  repositories: 1
+  packages: 5
+  jobs: ["nodelet_core"]
+stage9-worker6:
+  repositories: 1
+  packages: 5
+  jobs: ["audio_common"]
+stage9-worker7:
+  repositories: 1
+  packages: 5
+  jobs: ["dynamixel_motor"]
+stage9-worker8:
+  repositories: 1
+  packages: 4
+  jobs: ["executive_smach"]
+stage9-worker9:
+  repositories: 1
+  packages: 4
+  jobs: ["image_transport_plugins"]
+stage9-worker10:
+  repositories: 1
+  packages: 2
+  jobs: ["kdl_parser"]
+stage9-worker11:
+  repositories: 1
+  packages: 1
+  jobs: ["open_karto"]
+stage9-worker12:
+  repositories: 1
+  packages: 1
+  jobs: ["srdfdom"]
+stage9-worker13:
+  repositories: 1
+  packages: 1
+  jobs: ["realtime_tools"]
+stage9-worker14:
+  repositories: 1
+  packages: 1
+  jobs: ["moveit_msgs"]
+stage9-worker15:
+  repositories: 1
+  packages: 1
+  jobs: ["py_binding_tools"]
+stage9-worker16:
+  repositories: 1
+  packages: 1
+  jobs: ["urdf_geometry_parser"]
+stage9-worker17:
+  repositories: 1
+  packages: 1
+  jobs: ["camera_info_manager_py"]
+stage9-worker18:
+  repositories: 1
+  packages: 1
+  jobs: ["usb_cam"]
 stage10-worker0:
-  repositories: 2
-  packages: 6
-  jobs: ["rosbridge_suite", "control_toolbox"]
-stage10-worker1:
-  repositories: 2
-  packages: 6
-  jobs: ["geometry", "plotjuggler-ros-plugins"]
-stage10-worker2:
-  repositories: 2
-  packages: 6
-  jobs: ["rqt", "laser_proc"]
-stage10-worker3:
   repositories: 1
   packages: 5
   jobs: ["common_tutorials"]
-stage10-worker4:
-  repositories: 3
+stage10-worker1:
+  repositories: 1
   packages: 5
-  jobs: ["executive_smach_visualization", "libuvc_ros", "interactive_markers"]
+  jobs: ["rosbridge_suite"]
+stage10-worker2:
+  repositories: 1
+  packages: 5
+  jobs: ["geometry"]
+stage10-worker3:
+  repositories: 1
+  packages: 5
+  jobs: ["rqt"]
+stage10-worker4:
+  repositories: 1
+  packages: 2
+  jobs: ["executive_smach_visualization"]
+stage10-worker5:
+  repositories: 1
+  packages: 2
+  jobs: ["libuvc_ros"]
+stage10-worker6:
+  repositories: 1
+  packages: 1
+  jobs: ["plotjuggler-ros-plugins"]
+stage10-worker7:
+  repositories: 1
+  packages: 1
+  jobs: ["laser_proc"]
+stage10-worker8:
+  repositories: 1
+  packages: 1
+  jobs: ["control_toolbox"]
+stage10-worker9:
+  repositories: 1
+  packages: 1
+  jobs: ["interactive_markers"]
 stage11-worker0:
-  repositories: 4
-  packages: 14
-  jobs: ["ros_control", "rqt_robot_steering", "rqt_joint_trajectory_plot", "stage_ros"]
+  repositories: 1
+  packages: 11
+  jobs: ["ros_control"]
 stage11-worker1:
-  repositories: 7
-  packages: 14
-  jobs: ["image_pipeline", "rqt_runtime_monitor", "moveit_python", "rqt_graph", "apriltag_ros", "rqt_shell", "rqt_service_caller"]
+  repositories: 1
+  packages: 8
+  jobs: ["image_pipeline"]
 stage11-worker2:
-  repositories: 7
-  packages: 14
-  jobs: ["diagnostics", "rqt_web", "rqt_topic", "rqt_py_console", "rqt_publisher", "rosparam_shortcuts", "rqt_image_view"]
+  repositories: 1
+  packages: 8
+  jobs: ["diagnostics"]
 stage11-worker3:
-  repositories: 10
-  packages: 14
-  jobs: ["axis_camera", "geometry_tutorials", "wifi_ddwrt", "octomap_ros", "ros_numpy", "laser_geometry", "robot_pose_ekf", "rqt_pose_view", "rqt_nav_view", "rqt_ez_publisher"]
+  repositories: 1
+  packages: 3
+  jobs: ["geometry_tutorials"]
 stage11-worker4:
-  repositories: 9
-  packages: 13
-  jobs: ["perception_pcl", "slam_gmapping", "robot_calibration", "warehouse_ros", "rqt_logger_level", "robot_state_publisher", "rqt_plot", "rqt_top", "slam_karto"]
+  repositories: 1
+  packages: 3
+  jobs: ["perception_pcl"]
+stage11-worker5:
+  repositories: 1
+  packages: 3
+  jobs: ["axis_camera"]
+stage11-worker6:
+  repositories: 2
+  packages: 3
+  jobs: ["slam_gmapping", "rqt_robot_steering"]
+stage11-worker7:
+  repositories: 2
+  packages: 3
+  jobs: ["robot_calibration", "apriltag_ros"]
+stage11-worker8:
+  repositories: 3
+  packages: 3
+  jobs: ["robot_pose_ekf", "ros_numpy", "rqt_publisher"]
+stage11-worker9:
+  repositories: 3
+  packages: 3
+  jobs: ["rqt_image_view", "rqt_shell", "warehouse_ros"]
+stage11-worker10:
+  repositories: 3
+  packages: 3
+  jobs: ["rqt_runtime_monitor", "rqt_graph", "rqt_service_caller"]
+stage11-worker11:
+  repositories: 2
+  packages: 2
+  jobs: ["rqt_joint_trajectory_plot", "laser_geometry"]
+stage11-worker12:
+  repositories: 2
+  packages: 2
+  jobs: ["rqt_nav_view", "rqt_plot"]
+stage11-worker13:
+  repositories: 2
+  packages: 2
+  jobs: ["rqt_web", "wifi_ddwrt"]
+stage11-worker14:
+  repositories: 2
+  packages: 2
+  jobs: ["robot_state_publisher", "moveit_python"]
+stage11-worker15:
+  repositories: 2
+  packages: 2
+  jobs: ["rqt_ez_publisher", "slam_karto"]
+stage11-worker16:
+  repositories: 2
+  packages: 2
+  jobs: ["stage_ros", "octomap_ros"]
+stage11-worker17:
+  repositories: 2
+  packages: 2
+  jobs: ["rqt_top", "rqt_topic"]
+stage11-worker18:
+  repositories: 2
+  packages: 2
+  jobs: ["rqt_logger_level", "rqt_pose_view"]
+stage11-worker19:
+  repositories: 2
+  packages: 2
+  jobs: ["rosparam_shortcuts", "rqt_py_console"]
 stage12-worker0:
   repositories: 1
   packages: 16
   jobs: ["navigation"]
 stage12-worker1:
-  repositories: 2
-  packages: 15
-  jobs: ["ros_controllers", "warehouse_ros_sqlite"]
+  repositories: 1
+  packages: 14
+  jobs: ["ros_controllers"]
 stage12-worker2:
-  repositories: 6
-  packages: 14
-  jobs: ["multisense_ros", "pr2_power_drivers", "rviz", "laser_filters", "rqt_console", "urg_node"]
+  repositories: 1
+  packages: 6
+  jobs: ["gazebo_ros_pkgs"]
 stage12-worker3:
-  repositories: 6
-  packages: 14
-  jobs: ["gazebo_ros_pkgs", "joystick_drivers", "laser_assembler", "rgbd_launch", "rqt_tf_tree", "prosilica_driver"]
+  repositories: 1
+  packages: 6
+  jobs: ["multisense_ros"]
 stage12-worker4:
-  repositories: 6
-  packages: 14
-  jobs: ["pr2_mechanism", "driver_common", "rqt_bag", "microstrain_3dmgx2_imu", "rqt_dep", "rqt_moveit"]
+  repositories: 1
+  packages: 6
+  jobs: ["pr2_mechanism"]
+stage12-worker5:
+  repositories: 1
+  packages: 4
+  jobs: ["joystick_drivers"]
+stage12-worker6:
+  repositories: 1
+  packages: 4
+  jobs: ["pr2_power_drivers"]
+stage12-worker7:
+  repositories: 1
+  packages: 3
+  jobs: ["driver_common"]
+stage12-worker8:
+  repositories: 1
+  packages: 2
+  jobs: ["rqt_bag"]
+stage12-worker9:
+  repositories: 2
+  packages: 2
+  jobs: ["rgbd_launch", "prosilica_driver"]
+stage12-worker10:
+  repositories: 1
+  packages: 1
+  jobs: ["laser_assembler"]
+stage12-worker11:
+  repositories: 1
+  packages: 1
+  jobs: ["rqt_tf_tree"]
+stage12-worker12:
+  repositories: 1
+  packages: 1
+  jobs: ["microstrain_3dmgx2_imu"]
+stage12-worker13:
+  repositories: 1
+  packages: 1
+  jobs: ["warehouse_ros_sqlite"]
+stage12-worker14:
+  repositories: 1
+  packages: 1
+  jobs: ["rqt_moveit"]
+stage12-worker15:
+  repositories: 1
+  packages: 1
+  jobs: ["rviz"]
+stage12-worker16:
+  repositories: 1
+  packages: 1
+  jobs: ["urg_node"]
+stage12-worker17:
+  repositories: 1
+  packages: 1
+  jobs: ["laser_filters"]
+stage12-worker18:
+  repositories: 1
+  packages: 1
+  jobs: ["rqt_dep"]
+stage12-worker19:
+  repositories: 1
+  packages: 1
+  jobs: ["rqt_console"]
 stage13-worker0:
   repositories: 2
   packages: 40
   jobs: ["moveit", "moveit_resources"]
 stage13-worker1:
-  repositories: 3
-  packages: 12
-  jobs: ["pr2_controllers", "rqt_msg", "rqt_reconfigure"]
-stage13-worker2:
-  repositories: 4
-  packages: 11
-  jobs: ["visualization_tutorials", "openni_camera", "urdf_tutorial", "rviz_visual_tools"]
-stage13-worker3:
-  repositories: 4
-  packages: 11
-  jobs: ["wu_ros_tools", "fake_joint", "laser_filtering", "rqt_launch"]
-stage13-worker4:
-  repositories: 6
-  packages: 11
-  jobs: ["pr2_ethercat_drivers", "wge100_driver", "openni2_camera", "laser_pipeline", "rqt_robot_monitor", "rqt_rviz"]
-stage14-worker0:
-  repositories: 2
+  repositories: 1
   packages: 10
-  jobs: ["fetch_ros", "moveit_visual_tools"]
+  jobs: ["pr2_controllers"]
+stage13-worker2:
+  repositories: 1
+  packages: 6
+  jobs: ["visualization_tutorials"]
+stage13-worker3:
+  repositories: 1
+  packages: 5
+  jobs: ["wu_ros_tools"]
+stage13-worker4:
+  repositories: 1
+  packages: 3
+  jobs: ["fake_joint"]
+stage13-worker5:
+  repositories: 1
+  packages: 3
+  jobs: ["openni_camera"]
+stage13-worker6:
+  repositories: 1
+  packages: 3
+  jobs: ["pr2_ethercat_drivers"]
+stage13-worker7:
+  repositories: 1
+  packages: 3
+  jobs: ["wge100_driver"]
+stage13-worker8:
+  repositories: 1
+  packages: 2
+  jobs: ["laser_filtering"]
+stage13-worker9:
+  repositories: 1
+  packages: 2
+  jobs: ["openni2_camera"]
+stage13-worker10:
+  repositories: 1
+  packages: 1
+  jobs: ["rqt_rviz"]
+stage13-worker11:
+  repositories: 1
+  packages: 1
+  jobs: ["rqt_reconfigure"]
+stage13-worker12:
+  repositories: 1
+  packages: 1
+  jobs: ["rqt_launch"]
+stage13-worker13:
+  repositories: 1
+  packages: 1
+  jobs: ["laser_pipeline"]
+stage13-worker14:
+  repositories: 1
+  packages: 1
+  jobs: ["rqt_robot_monitor"]
+stage13-worker15:
+  repositories: 1
+  packages: 1
+  jobs: ["rqt_msg"]
+stage13-worker16:
+  repositories: 1
+  packages: 1
+  jobs: ["rviz_visual_tools"]
+stage13-worker17:
+  repositories: 1
+  packages: 1
+  jobs: ["urdf_tutorial"]
+stage14-worker0:
+  repositories: 1
+  packages: 9
+  jobs: ["fetch_ros"]
 stage14-worker1:
-  repositories: 2
-  packages: 9
-  jobs: ["industrial_core", "rqt_robot_dashboard"]
+  repositories: 1
+  packages: 8
+  jobs: ["pr2_robot"]
 stage14-worker2:
-  repositories: 2
-  packages: 9
-  jobs: ["pr2_robot", "moveit_by_name"]
+  repositories: 1
+  packages: 8
+  jobs: ["industrial_core"]
 stage14-worker3:
-  repositories: 4
-  packages: 9
-  jobs: ["moveit_task_constructor", "rqt_srv", "moveit_opw_kinematics_plugin", "bio_ik"]
+  repositories: 1
+  packages: 6
+  jobs: ["moveit_task_constructor"]
 stage14-worker4:
-  repositories: 4
-  packages: 9
-  jobs: ["people", "moveit_monitoring", "rqt_action", "urdf_sim_tutorial"]
+  repositories: 1
+  packages: 6
+  jobs: ["people"]
+stage14-worker5:
+  repositories: 1
+  packages: 1
+  jobs: ["moveit_by_name"]
+stage14-worker6:
+  repositories: 1
+  packages: 1
+  jobs: ["moveit_monitoring"]
+stage14-worker7:
+  repositories: 1
+  packages: 1
+  jobs: ["moveit_opw_kinematics_plugin"]
+stage14-worker8:
+  repositories: 1
+  packages: 1
+  jobs: ["bio_ik"]
+stage14-worker9:
+  repositories: 1
+  packages: 1
+  jobs: ["moveit_visual_tools"]
+stage14-worker10:
+  repositories: 1
+  packages: 1
+  jobs: ["rqt_srv"]
+stage14-worker11:
+  repositories: 1
+  packages: 1
+  jobs: ["urdf_sim_tutorial"]
+stage14-worker12:
+  repositories: 1
+  packages: 1
+  jobs: ["rqt_action"]
+stage14-worker13:
+  repositories: 1
+  packages: 1
+  jobs: ["rqt_robot_dashboard"]
 stage15-worker0:
   repositories: 1
   packages: 11
@@ -279,11 +691,11 @@ stage15-worker0:
 stage15-worker1:
   repositories: 1
   packages: 1
-  jobs: ["rqt_robot_plugins"]
+  jobs: ["mtc_pour"]
 stage15-worker2:
   repositories: 1
   packages: 1
-  jobs: ["mtc_pour"]
+  jobs: ["rqt_robot_plugins"]
 stage15-worker3:
   repositories: 1
   packages: 1
@@ -299,4 +711,4 @@ stage16-worker1:
 stage17-worker0:
   repositories: 3
   packages: 22
-  jobs: ["jsk_recognition", "jsk_roseus", "jsk_visualization"]
+  jobs: ["jsk_visualization", "jsk_roseus", "jsk_recognition"]
