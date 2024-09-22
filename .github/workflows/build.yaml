@@ -14,6 +14,8 @@ jobs:
     outputs:
       workers: ${{ steps.worker.outputs.workers }}
     steps:
+      - name: Tune GitHub-hosted runner network
+        uses: smorimoto/tune-github-hosted-runner-network@v1
       - name: Check out the repo
         uses: actions/checkout@v4
       - name: Clone sources
