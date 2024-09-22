@@ -3,6 +3,9 @@ catkin:
     - catkin
     - libgtest-dev
     - libgmock-dev
+octomap:
+  ubuntu:
+    - liboctomap-dev
 python3-catkin-pkg-modules:
   ubuntu:
     - python3-catkin-pkg
