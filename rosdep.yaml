@@ -1,3 +1,8 @@
+catkin:
+  ubuntu:
+    - catkin
+    - libgtest-dev
+    - libgmock-dev
 python3-catkin-pkg-modules:
   ubuntu:
     - python3-catkin-pkg
