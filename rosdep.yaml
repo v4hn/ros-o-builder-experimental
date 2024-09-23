@@ -15,6 +15,9 @@ python3-rosdep-modules:
 python3-rospkg-modules:
   ubuntu:
     - python3-rospkg
+orocos_kdl:
+  ubuntu:
+    - liborocos-kdl-dev
 libdlib:
   ubuntu:
     - libdlib-dev
