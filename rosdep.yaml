@@ -12,6 +12,9 @@ python3-catkin-pkg-modules:
 python3-rosdep-modules:
   ubuntu:
     - python3-rosdep2
+python3-rospkg-modules:
+  ubuntu:
+    - python3-rospkg
 libdlib:
   ubuntu:
     - libdlib-dev
