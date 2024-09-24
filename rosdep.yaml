@@ -3,6 +3,9 @@ catkin:
     - catkin
     - libgtest-dev
     - libgmock-dev
+collada_parser:
+  ubuntu:
+    - libcollada-parser-dev
 octomap:
   ubuntu:
     - liboctomap-dev
