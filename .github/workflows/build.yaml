@@ -133,80 +133,10 @@ jobs:
     with:
       worker: stage1-worker9
       depends: stage0
-  stage1-worker10:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage1-worker10' )
-    needs: stage0
-    with:
-      worker: stage1-worker10
-      depends: stage0
-  stage1-worker11:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage1-worker11' )
-    needs: stage0
-    with:
-      worker: stage1-worker11
-      depends: stage0
-  stage1-worker12:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage1-worker12' )
-    needs: stage0
-    with:
-      worker: stage1-worker12
-      depends: stage0
-  stage1-worker13:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage1-worker13' )
-    needs: stage0
-    with:
-      worker: stage1-worker13
-      depends: stage0
-  stage1-worker14:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage1-worker14' )
-    needs: stage0
-    with:
-      worker: stage1-worker14
-      depends: stage0
-  stage1-worker15:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage1-worker15' )
-    needs: stage0
-    with:
-      worker: stage1-worker15
-      depends: stage0
-  stage1-worker16:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage1-worker16' )
-    needs: stage0
-    with:
-      worker: stage1-worker16
-      depends: stage0
-  stage1-worker17:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage1-worker17' )
-    needs: stage0
-    with:
-      worker: stage1-worker17
-      depends: stage0
-  stage1-worker18:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage1-worker18' )
-    needs: stage0
-    with:
-      worker: stage1-worker18
-      depends: stage0
-  stage1-worker19:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage1-worker19' )
-    needs: stage0
-    with:
-      worker: stage1-worker19
-      depends: stage0
   stage1:
     uses: ./.github/workflows/aggregate-debs.yaml
     if: always() && !cancelled()
-    needs: [stage1-worker0, stage1-worker1, stage1-worker2, stage1-worker3, stage1-worker4, stage1-worker5, stage1-worker6, stage1-worker7, stage1-worker8, stage1-worker9, stage1-worker10, stage1-worker11, stage1-worker12, stage1-worker13, stage1-worker14, stage1-worker15, stage1-worker16, stage1-worker17, stage1-worker18, stage1-worker19, ]
+    needs: [stage1-worker0, stage1-worker1, stage1-worker2, stage1-worker3, stage1-worker4, stage1-worker5, stage1-worker6, stage1-worker7, stage1-worker8, stage1-worker9, ]
     with:
       stage: 1
 
@@ -280,80 +210,10 @@ jobs:
     with:
       worker: stage2-worker9
       depends: stage1
-  stage2-worker10:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage2-worker10' )
-    needs: stage1
-    with:
-      worker: stage2-worker10
-      depends: stage1
-  stage2-worker11:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage2-worker11' )
-    needs: stage1
-    with:
-      worker: stage2-worker11
-      depends: stage1
-  stage2-worker12:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage2-worker12' )
-    needs: stage1
-    with:
-      worker: stage2-worker12
-      depends: stage1
-  stage2-worker13:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage2-worker13' )
-    needs: stage1
-    with:
-      worker: stage2-worker13
-      depends: stage1
-  stage2-worker14:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage2-worker14' )
-    needs: stage1
-    with:
-      worker: stage2-worker14
-      depends: stage1
-  stage2-worker15:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage2-worker15' )
-    needs: stage1
-    with:
-      worker: stage2-worker15
-      depends: stage1
-  stage2-worker16:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage2-worker16' )
-    needs: stage1
-    with:
-      worker: stage2-worker16
-      depends: stage1
-  stage2-worker17:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage2-worker17' )
-    needs: stage1
-    with:
-      worker: stage2-worker17
-      depends: stage1
-  stage2-worker18:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage2-worker18' )
-    needs: stage1
-    with:
-      worker: stage2-worker18
-      depends: stage1
-  stage2-worker19:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage2-worker19' )
-    needs: stage1
-    with:
-      worker: stage2-worker19
-      depends: stage1
   stage2:
     uses: ./.github/workflows/aggregate-debs.yaml
     if: always() && !cancelled()
-    needs: [stage2-worker0, stage2-worker1, stage2-worker2, stage2-worker3, stage2-worker4, stage2-worker5, stage2-worker6, stage2-worker7, stage2-worker8, stage2-worker9, stage2-worker10, stage2-worker11, stage2-worker12, stage2-worker13, stage2-worker14, stage2-worker15, stage2-worker16, stage2-worker17, stage2-worker18, stage2-worker19, ]
+    needs: [stage2-worker0, stage2-worker1, stage2-worker2, stage2-worker3, stage2-worker4, stage2-worker5, stage2-worker6, stage2-worker7, stage2-worker8, stage2-worker9, ]
     with:
       stage: 2
 
@@ -427,80 +287,10 @@ jobs:
     with:
       worker: stage3-worker9
       depends: stage2
-  stage3-worker10:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage3-worker10' )
-    needs: stage2
-    with:
-      worker: stage3-worker10
-      depends: stage2
-  stage3-worker11:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage3-worker11' )
-    needs: stage2
-    with:
-      worker: stage3-worker11
-      depends: stage2
-  stage3-worker12:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage3-worker12' )
-    needs: stage2
-    with:
-      worker: stage3-worker12
-      depends: stage2
-  stage3-worker13:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage3-worker13' )
-    needs: stage2
-    with:
-      worker: stage3-worker13
-      depends: stage2
-  stage3-worker14:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage3-worker14' )
-    needs: stage2
-    with:
-      worker: stage3-worker14
-      depends: stage2
-  stage3-worker15:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage3-worker15' )
-    needs: stage2
-    with:
-      worker: stage3-worker15
-      depends: stage2
-  stage3-worker16:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage3-worker16' )
-    needs: stage2
-    with:
-      worker: stage3-worker16
-      depends: stage2
-  stage3-worker17:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage3-worker17' )
-    needs: stage2
-    with:
-      worker: stage3-worker17
-      depends: stage2
-  stage3-worker18:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage3-worker18' )
-    needs: stage2
-    with:
-      worker: stage3-worker18
-      depends: stage2
-  stage3-worker19:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage3-worker19' )
-    needs: stage2
-    with:
-      worker: stage3-worker19
-      depends: stage2
   stage3:
     uses: ./.github/workflows/aggregate-debs.yaml
     if: always() && !cancelled()
-    needs: [stage3-worker0, stage3-worker1, stage3-worker2, stage3-worker3, stage3-worker4, stage3-worker5, stage3-worker6, stage3-worker7, stage3-worker8, stage3-worker9, stage3-worker10, stage3-worker11, stage3-worker12, stage3-worker13, stage3-worker14, stage3-worker15, stage3-worker16, stage3-worker17, stage3-worker18, stage3-worker19, ]
+    needs: [stage3-worker0, stage3-worker1, stage3-worker2, stage3-worker3, stage3-worker4, stage3-worker5, stage3-worker6, stage3-worker7, stage3-worker8, stage3-worker9, ]
     with:
       stage: 3
 
@@ -574,80 +364,10 @@ jobs:
     with:
       worker: stage4-worker9
       depends: stage3
-  stage4-worker10:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage4-worker10' )
-    needs: stage3
-    with:
-      worker: stage4-worker10
-      depends: stage3
-  stage4-worker11:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage4-worker11' )
-    needs: stage3
-    with:
-      worker: stage4-worker11
-      depends: stage3
-  stage4-worker12:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage4-worker12' )
-    needs: stage3
-    with:
-      worker: stage4-worker12
-      depends: stage3
-  stage4-worker13:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage4-worker13' )
-    needs: stage3
-    with:
-      worker: stage4-worker13
-      depends: stage3
-  stage4-worker14:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage4-worker14' )
-    needs: stage3
-    with:
-      worker: stage4-worker14
-      depends: stage3
-  stage4-worker15:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage4-worker15' )
-    needs: stage3
-    with:
-      worker: stage4-worker15
-      depends: stage3
-  stage4-worker16:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage4-worker16' )
-    needs: stage3
-    with:
-      worker: stage4-worker16
-      depends: stage3
-  stage4-worker17:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage4-worker17' )
-    needs: stage3
-    with:
-      worker: stage4-worker17
-      depends: stage3
-  stage4-worker18:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage4-worker18' )
-    needs: stage3
-    with:
-      worker: stage4-worker18
-      depends: stage3
-  stage4-worker19:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage4-worker19' )
-    needs: stage3
-    with:
-      worker: stage4-worker19
-      depends: stage3
   stage4:
     uses: ./.github/workflows/aggregate-debs.yaml
     if: always() && !cancelled()
-    needs: [stage4-worker0, stage4-worker1, stage4-worker2, stage4-worker3, stage4-worker4, stage4-worker5, stage4-worker6, stage4-worker7, stage4-worker8, stage4-worker9, stage4-worker10, stage4-worker11, stage4-worker12, stage4-worker13, stage4-worker14, stage4-worker15, stage4-worker16, stage4-worker17, stage4-worker18, stage4-worker19, ]
+    needs: [stage4-worker0, stage4-worker1, stage4-worker2, stage4-worker3, stage4-worker4, stage4-worker5, stage4-worker6, stage4-worker7, stage4-worker8, stage4-worker9, ]
     with:
       stage: 4
 
@@ -721,80 +441,10 @@ jobs:
     with:
       worker: stage5-worker9
       depends: stage4
-  stage5-worker10:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage5-worker10' )
-    needs: stage4
-    with:
-      worker: stage5-worker10
-      depends: stage4
-  stage5-worker11:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage5-worker11' )
-    needs: stage4
-    with:
-      worker: stage5-worker11
-      depends: stage4
-  stage5-worker12:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage5-worker12' )
-    needs: stage4
-    with:
-      worker: stage5-worker12
-      depends: stage4
-  stage5-worker13:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage5-worker13' )
-    needs: stage4
-    with:
-      worker: stage5-worker13
-      depends: stage4
-  stage5-worker14:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage5-worker14' )
-    needs: stage4
-    with:
-      worker: stage5-worker14
-      depends: stage4
-  stage5-worker15:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage5-worker15' )
-    needs: stage4
-    with:
-      worker: stage5-worker15
-      depends: stage4
-  stage5-worker16:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage5-worker16' )
-    needs: stage4
-    with:
-      worker: stage5-worker16
-      depends: stage4
-  stage5-worker17:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage5-worker17' )
-    needs: stage4
-    with:
-      worker: stage5-worker17
-      depends: stage4
-  stage5-worker18:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage5-worker18' )
-    needs: stage4
-    with:
-      worker: stage5-worker18
-      depends: stage4
-  stage5-worker19:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage5-worker19' )
-    needs: stage4
-    with:
-      worker: stage5-worker19
-      depends: stage4
   stage5:
     uses: ./.github/workflows/aggregate-debs.yaml
     if: always() && !cancelled()
-    needs: [stage5-worker0, stage5-worker1, stage5-worker2, stage5-worker3, stage5-worker4, stage5-worker5, stage5-worker6, stage5-worker7, stage5-worker8, stage5-worker9, stage5-worker10, stage5-worker11, stage5-worker12, stage5-worker13, stage5-worker14, stage5-worker15, stage5-worker16, stage5-worker17, stage5-worker18, stage5-worker19, ]
+    needs: [stage5-worker0, stage5-worker1, stage5-worker2, stage5-worker3, stage5-worker4, stage5-worker5, stage5-worker6, stage5-worker7, stage5-worker8, stage5-worker9, ]
     with:
       stage: 5
 
@@ -868,80 +518,10 @@ jobs:
     with:
       worker: stage6-worker9
       depends: stage5
-  stage6-worker10:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage6-worker10' )
-    needs: stage5
-    with:
-      worker: stage6-worker10
-      depends: stage5
-  stage6-worker11:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage6-worker11' )
-    needs: stage5
-    with:
-      worker: stage6-worker11
-      depends: stage5
-  stage6-worker12:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage6-worker12' )
-    needs: stage5
-    with:
-      worker: stage6-worker12
-      depends: stage5
-  stage6-worker13:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage6-worker13' )
-    needs: stage5
-    with:
-      worker: stage6-worker13
-      depends: stage5
-  stage6-worker14:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage6-worker14' )
-    needs: stage5
-    with:
-      worker: stage6-worker14
-      depends: stage5
-  stage6-worker15:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage6-worker15' )
-    needs: stage5
-    with:
-      worker: stage6-worker15
-      depends: stage5
-  stage6-worker16:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage6-worker16' )
-    needs: stage5
-    with:
-      worker: stage6-worker16
-      depends: stage5
-  stage6-worker17:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage6-worker17' )
-    needs: stage5
-    with:
-      worker: stage6-worker17
-      depends: stage5
-  stage6-worker18:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage6-worker18' )
-    needs: stage5
-    with:
-      worker: stage6-worker18
-      depends: stage5
-  stage6-worker19:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage6-worker19' )
-    needs: stage5
-    with:
-      worker: stage6-worker19
-      depends: stage5
   stage6:
     uses: ./.github/workflows/aggregate-debs.yaml
     if: always() && !cancelled()
-    needs: [stage6-worker0, stage6-worker1, stage6-worker2, stage6-worker3, stage6-worker4, stage6-worker5, stage6-worker6, stage6-worker7, stage6-worker8, stage6-worker9, stage6-worker10, stage6-worker11, stage6-worker12, stage6-worker13, stage6-worker14, stage6-worker15, stage6-worker16, stage6-worker17, stage6-worker18, stage6-worker19, ]
+    needs: [stage6-worker0, stage6-worker1, stage6-worker2, stage6-worker3, stage6-worker4, stage6-worker5, stage6-worker6, stage6-worker7, stage6-worker8, stage6-worker9, ]
     with:
       stage: 6
 
@@ -1015,80 +595,10 @@ jobs:
     with:
       worker: stage7-worker9
       depends: stage6
-  stage7-worker10:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage7-worker10' )
-    needs: stage6
-    with:
-      worker: stage7-worker10
-      depends: stage6
-  stage7-worker11:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage7-worker11' )
-    needs: stage6
-    with:
-      worker: stage7-worker11
-      depends: stage6
-  stage7-worker12:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage7-worker12' )
-    needs: stage6
-    with:
-      worker: stage7-worker12
-      depends: stage6
-  stage7-worker13:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage7-worker13' )
-    needs: stage6
-    with:
-      worker: stage7-worker13
-      depends: stage6
-  stage7-worker14:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage7-worker14' )
-    needs: stage6
-    with:
-      worker: stage7-worker14
-      depends: stage6
-  stage7-worker15:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage7-worker15' )
-    needs: stage6
-    with:
-      worker: stage7-worker15
-      depends: stage6
-  stage7-worker16:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage7-worker16' )
-    needs: stage6
-    with:
-      worker: stage7-worker16
-      depends: stage6
-  stage7-worker17:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage7-worker17' )
-    needs: stage6
-    with:
-      worker: stage7-worker17
-      depends: stage6
-  stage7-worker18:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage7-worker18' )
-    needs: stage6
-    with:
-      worker: stage7-worker18
-      depends: stage6
-  stage7-worker19:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage7-worker19' )
-    needs: stage6
-    with:
-      worker: stage7-worker19
-      depends: stage6
   stage7:
     uses: ./.github/workflows/aggregate-debs.yaml
     if: always() && !cancelled()
-    needs: [stage7-worker0, stage7-worker1, stage7-worker2, stage7-worker3, stage7-worker4, stage7-worker5, stage7-worker6, stage7-worker7, stage7-worker8, stage7-worker9, stage7-worker10, stage7-worker11, stage7-worker12, stage7-worker13, stage7-worker14, stage7-worker15, stage7-worker16, stage7-worker17, stage7-worker18, stage7-worker19, ]
+    needs: [stage7-worker0, stage7-worker1, stage7-worker2, stage7-worker3, stage7-worker4, stage7-worker5, stage7-worker6, stage7-worker7, stage7-worker8, stage7-worker9, ]
     with:
       stage: 7
 
@@ -1162,80 +672,10 @@ jobs:
     with:
       worker: stage8-worker9
       depends: stage7
-  stage8-worker10:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage8-worker10' )
-    needs: stage7
-    with:
-      worker: stage8-worker10
-      depends: stage7
-  stage8-worker11:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage8-worker11' )
-    needs: stage7
-    with:
-      worker: stage8-worker11
-      depends: stage7
-  stage8-worker12:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage8-worker12' )
-    needs: stage7
-    with:
-      worker: stage8-worker12
-      depends: stage7
-  stage8-worker13:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage8-worker13' )
-    needs: stage7
-    with:
-      worker: stage8-worker13
-      depends: stage7
-  stage8-worker14:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage8-worker14' )
-    needs: stage7
-    with:
-      worker: stage8-worker14
-      depends: stage7
-  stage8-worker15:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage8-worker15' )
-    needs: stage7
-    with:
-      worker: stage8-worker15
-      depends: stage7
-  stage8-worker16:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage8-worker16' )
-    needs: stage7
-    with:
-      worker: stage8-worker16
-      depends: stage7
-  stage8-worker17:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage8-worker17' )
-    needs: stage7
-    with:
-      worker: stage8-worker17
-      depends: stage7
-  stage8-worker18:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage8-worker18' )
-    needs: stage7
-    with:
-      worker: stage8-worker18
-      depends: stage7
-  stage8-worker19:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage8-worker19' )
-    needs: stage7
-    with:
-      worker: stage8-worker19
-      depends: stage7
   stage8:
     uses: ./.github/workflows/aggregate-debs.yaml
     if: always() && !cancelled()
-    needs: [stage8-worker0, stage8-worker1, stage8-worker2, stage8-worker3, stage8-worker4, stage8-worker5, stage8-worker6, stage8-worker7, stage8-worker8, stage8-worker9, stage8-worker10, stage8-worker11, stage8-worker12, stage8-worker13, stage8-worker14, stage8-worker15, stage8-worker16, stage8-worker17, stage8-worker18, stage8-worker19, ]
+    needs: [stage8-worker0, stage8-worker1, stage8-worker2, stage8-worker3, stage8-worker4, stage8-worker5, stage8-worker6, stage8-worker7, stage8-worker8, stage8-worker9, ]
     with:
       stage: 8
 
@@ -1309,80 +749,10 @@ jobs:
     with:
       worker: stage9-worker9
       depends: stage8
-  stage9-worker10:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage9-worker10' )
-    needs: stage8
-    with:
-      worker: stage9-worker10
-      depends: stage8
-  stage9-worker11:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage9-worker11' )
-    needs: stage8
-    with:
-      worker: stage9-worker11
-      depends: stage8
-  stage9-worker12:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage9-worker12' )
-    needs: stage8
-    with:
-      worker: stage9-worker12
-      depends: stage8
-  stage9-worker13:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage9-worker13' )
-    needs: stage8
-    with:
-      worker: stage9-worker13
-      depends: stage8
-  stage9-worker14:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage9-worker14' )
-    needs: stage8
-    with:
-      worker: stage9-worker14
-      depends: stage8
-  stage9-worker15:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage9-worker15' )
-    needs: stage8
-    with:
-      worker: stage9-worker15
-      depends: stage8
-  stage9-worker16:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage9-worker16' )
-    needs: stage8
-    with:
-      worker: stage9-worker16
-      depends: stage8
-  stage9-worker17:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage9-worker17' )
-    needs: stage8
-    with:
-      worker: stage9-worker17
-      depends: stage8
-  stage9-worker18:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage9-worker18' )
-    needs: stage8
-    with:
-      worker: stage9-worker18
-      depends: stage8
-  stage9-worker19:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage9-worker19' )
-    needs: stage8
-    with:
-      worker: stage9-worker19
-      depends: stage8
   stage9:
     uses: ./.github/workflows/aggregate-debs.yaml
     if: always() && !cancelled()
-    needs: [stage9-worker0, stage9-worker1, stage9-worker2, stage9-worker3, stage9-worker4, stage9-worker5, stage9-worker6, stage9-worker7, stage9-worker8, stage9-worker9, stage9-worker10, stage9-worker11, stage9-worker12, stage9-worker13, stage9-worker14, stage9-worker15, stage9-worker16, stage9-worker17, stage9-worker18, stage9-worker19, ]
+    needs: [stage9-worker0, stage9-worker1, stage9-worker2, stage9-worker3, stage9-worker4, stage9-worker5, stage9-worker6, stage9-worker7, stage9-worker8, stage9-worker9, ]
     with:
       stage: 9
 
@@ -1456,80 +826,10 @@ jobs:
     with:
       worker: stage10-worker9
       depends: stage9
-  stage10-worker10:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage10-worker10' )
-    needs: stage9
-    with:
-      worker: stage10-worker10
-      depends: stage9
-  stage10-worker11:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage10-worker11' )
-    needs: stage9
-    with:
-      worker: stage10-worker11
-      depends: stage9
-  stage10-worker12:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage10-worker12' )
-    needs: stage9
-    with:
-      worker: stage10-worker12
-      depends: stage9
-  stage10-worker13:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage10-worker13' )
-    needs: stage9
-    with:
-      worker: stage10-worker13
-      depends: stage9
-  stage10-worker14:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage10-worker14' )
-    needs: stage9
-    with:
-      worker: stage10-worker14
-      depends: stage9
-  stage10-worker15:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage10-worker15' )
-    needs: stage9
-    with:
-      worker: stage10-worker15
-      depends: stage9
-  stage10-worker16:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage10-worker16' )
-    needs: stage9
-    with:
-      worker: stage10-worker16
-      depends: stage9
-  stage10-worker17:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage10-worker17' )
-    needs: stage9
-    with:
-      worker: stage10-worker17
-      depends: stage9
-  stage10-worker18:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage10-worker18' )
-    needs: stage9
-    with:
-      worker: stage10-worker18
-      depends: stage9
-  stage10-worker19:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage10-worker19' )
-    needs: stage9
-    with:
-      worker: stage10-worker19
-      depends: stage9
   stage10:
     uses: ./.github/workflows/aggregate-debs.yaml
     if: always() && !cancelled()
-    needs: [stage10-worker0, stage10-worker1, stage10-worker2, stage10-worker3, stage10-worker4, stage10-worker5, stage10-worker6, stage10-worker7, stage10-worker8, stage10-worker9, stage10-worker10, stage10-worker11, stage10-worker12, stage10-worker13, stage10-worker14, stage10-worker15, stage10-worker16, stage10-worker17, stage10-worker18, stage10-worker19, ]
+    needs: [stage10-worker0, stage10-worker1, stage10-worker2, stage10-worker3, stage10-worker4, stage10-worker5, stage10-worker6, stage10-worker7, stage10-worker8, stage10-worker9, ]
     with:
       stage: 10
 
@@ -1603,80 +903,10 @@ jobs:
     with:
       worker: stage11-worker9
       depends: stage10
-  stage11-worker10:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage11-worker10' )
-    needs: stage10
-    with:
-      worker: stage11-worker10
-      depends: stage10
-  stage11-worker11:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage11-worker11' )
-    needs: stage10
-    with:
-      worker: stage11-worker11
-      depends: stage10
-  stage11-worker12:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage11-worker12' )
-    needs: stage10
-    with:
-      worker: stage11-worker12
-      depends: stage10
-  stage11-worker13:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage11-worker13' )
-    needs: stage10
-    with:
-      worker: stage11-worker13
-      depends: stage10
-  stage11-worker14:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage11-worker14' )
-    needs: stage10
-    with:
-      worker: stage11-worker14
-      depends: stage10
-  stage11-worker15:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage11-worker15' )
-    needs: stage10
-    with:
-      worker: stage11-worker15
-      depends: stage10
-  stage11-worker16:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage11-worker16' )
-    needs: stage10
-    with:
-      worker: stage11-worker16
-      depends: stage10
-  stage11-worker17:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage11-worker17' )
-    needs: stage10
-    with:
-      worker: stage11-worker17
-      depends: stage10
-  stage11-worker18:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage11-worker18' )
-    needs: stage10
-    with:
-      worker: stage11-worker18
-      depends: stage10
-  stage11-worker19:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage11-worker19' )
-    needs: stage10
-    with:
-      worker: stage11-worker19
-      depends: stage10
   stage11:
     uses: ./.github/workflows/aggregate-debs.yaml
     if: always() && !cancelled()
-    needs: [stage11-worker0, stage11-worker1, stage11-worker2, stage11-worker3, stage11-worker4, stage11-worker5, stage11-worker6, stage11-worker7, stage11-worker8, stage11-worker9, stage11-worker10, stage11-worker11, stage11-worker12, stage11-worker13, stage11-worker14, stage11-worker15, stage11-worker16, stage11-worker17, stage11-worker18, stage11-worker19, ]
+    needs: [stage11-worker0, stage11-worker1, stage11-worker2, stage11-worker3, stage11-worker4, stage11-worker5, stage11-worker6, stage11-worker7, stage11-worker8, stage11-worker9, ]
     with:
       stage: 11
 
@@ -1750,80 +980,10 @@ jobs:
     with:
       worker: stage12-worker9
       depends: stage11
-  stage12-worker10:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage12-worker10' )
-    needs: stage11
-    with:
-      worker: stage12-worker10
-      depends: stage11
-  stage12-worker11:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage12-worker11' )
-    needs: stage11
-    with:
-      worker: stage12-worker11
-      depends: stage11
-  stage12-worker12:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage12-worker12' )
-    needs: stage11
-    with:
-      worker: stage12-worker12
-      depends: stage11
-  stage12-worker13:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage12-worker13' )
-    needs: stage11
-    with:
-      worker: stage12-worker13
-      depends: stage11
-  stage12-worker14:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage12-worker14' )
-    needs: stage11
-    with:
-      worker: stage12-worker14
-      depends: stage11
-  stage12-worker15:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage12-worker15' )
-    needs: stage11
-    with:
-      worker: stage12-worker15
-      depends: stage11
-  stage12-worker16:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage12-worker16' )
-    needs: stage11
-    with:
-      worker: stage12-worker16
-      depends: stage11
-  stage12-worker17:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage12-worker17' )
-    needs: stage11
-    with:
-      worker: stage12-worker17
-      depends: stage11
-  stage12-worker18:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage12-worker18' )
-    needs: stage11
-    with:
-      worker: stage12-worker18
-      depends: stage11
-  stage12-worker19:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage12-worker19' )
-    needs: stage11
-    with:
-      worker: stage12-worker19
-      depends: stage11
   stage12:
     uses: ./.github/workflows/aggregate-debs.yaml
     if: always() && !cancelled()
-    needs: [stage12-worker0, stage12-worker1, stage12-worker2, stage12-worker3, stage12-worker4, stage12-worker5, stage12-worker6, stage12-worker7, stage12-worker8, stage12-worker9, stage12-worker10, stage12-worker11, stage12-worker12, stage12-worker13, stage12-worker14, stage12-worker15, stage12-worker16, stage12-worker17, stage12-worker18, stage12-worker19, ]
+    needs: [stage12-worker0, stage12-worker1, stage12-worker2, stage12-worker3, stage12-worker4, stage12-worker5, stage12-worker6, stage12-worker7, stage12-worker8, stage12-worker9, ]
     with:
       stage: 12
 
@@ -1897,80 +1057,10 @@ jobs:
     with:
       worker: stage13-worker9
       depends: stage12
-  stage13-worker10:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage13-worker10' )
-    needs: stage12
-    with:
-      worker: stage13-worker10
-      depends: stage12
-  stage13-worker11:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage13-worker11' )
-    needs: stage12
-    with:
-      worker: stage13-worker11
-      depends: stage12
-  stage13-worker12:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage13-worker12' )
-    needs: stage12
-    with:
-      worker: stage13-worker12
-      depends: stage12
-  stage13-worker13:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage13-worker13' )
-    needs: stage12
-    with:
-      worker: stage13-worker13
-      depends: stage12
-  stage13-worker14:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage13-worker14' )
-    needs: stage12
-    with:
-      worker: stage13-worker14
-      depends: stage12
-  stage13-worker15:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage13-worker15' )
-    needs: stage12
-    with:
-      worker: stage13-worker15
-      depends: stage12
-  stage13-worker16:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage13-worker16' )
-    needs: stage12
-    with:
-      worker: stage13-worker16
-      depends: stage12
-  stage13-worker17:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage13-worker17' )
-    needs: stage12
-    with:
-      worker: stage13-worker17
-      depends: stage12
-  stage13-worker18:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage13-worker18' )
-    needs: stage12
-    with:
-      worker: stage13-worker18
-      depends: stage12
-  stage13-worker19:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage13-worker19' )
-    needs: stage12
-    with:
-      worker: stage13-worker19
-      depends: stage12
   stage13:
     uses: ./.github/workflows/aggregate-debs.yaml
     if: always() && !cancelled()
-    needs: [stage13-worker0, stage13-worker1, stage13-worker2, stage13-worker3, stage13-worker4, stage13-worker5, stage13-worker6, stage13-worker7, stage13-worker8, stage13-worker9, stage13-worker10, stage13-worker11, stage13-worker12, stage13-worker13, stage13-worker14, stage13-worker15, stage13-worker16, stage13-worker17, stage13-worker18, stage13-worker19, ]
+    needs: [stage13-worker0, stage13-worker1, stage13-worker2, stage13-worker3, stage13-worker4, stage13-worker5, stage13-worker6, stage13-worker7, stage13-worker8, stage13-worker9, ]
     with:
       stage: 13
 
@@ -2044,80 +1134,10 @@ jobs:
     with:
       worker: stage14-worker9
       depends: stage13
-  stage14-worker10:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage14-worker10' )
-    needs: stage13
-    with:
-      worker: stage14-worker10
-      depends: stage13
-  stage14-worker11:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage14-worker11' )
-    needs: stage13
-    with:
-      worker: stage14-worker11
-      depends: stage13
-  stage14-worker12:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage14-worker12' )
-    needs: stage13
-    with:
-      worker: stage14-worker12
-      depends: stage13
-  stage14-worker13:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage14-worker13' )
-    needs: stage13
-    with:
-      worker: stage14-worker13
-      depends: stage13
-  stage14-worker14:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage14-worker14' )
-    needs: stage13
-    with:
-      worker: stage14-worker14
-      depends: stage13
-  stage14-worker15:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage14-worker15' )
-    needs: stage13
-    with:
-      worker: stage14-worker15
-      depends: stage13
-  stage14-worker16:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage14-worker16' )
-    needs: stage13
-    with:
-      worker: stage14-worker16
-      depends: stage13
-  stage14-worker17:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage14-worker17' )
-    needs: stage13
-    with:
-      worker: stage14-worker17
-      depends: stage13
-  stage14-worker18:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage14-worker18' )
-    needs: stage13
-    with:
-      worker: stage14-worker18
-      depends: stage13
-  stage14-worker19:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage14-worker19' )
-    needs: stage13
-    with:
-      worker: stage14-worker19
-      depends: stage13
   stage14:
     uses: ./.github/workflows/aggregate-debs.yaml
     if: always() && !cancelled()
-    needs: [stage14-worker0, stage14-worker1, stage14-worker2, stage14-worker3, stage14-worker4, stage14-worker5, stage14-worker6, stage14-worker7, stage14-worker8, stage14-worker9, stage14-worker10, stage14-worker11, stage14-worker12, stage14-worker13, stage14-worker14, stage14-worker15, stage14-worker16, stage14-worker17, stage14-worker18, stage14-worker19, ]
+    needs: [stage14-worker0, stage14-worker1, stage14-worker2, stage14-worker3, stage14-worker4, stage14-worker5, stage14-worker6, stage14-worker7, stage14-worker8, stage14-worker9, ]
     with:
       stage: 14
 
@@ -2191,80 +1211,10 @@ jobs:
     with:
       worker: stage15-worker9
       depends: stage14
-  stage15-worker10:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage15-worker10' )
-    needs: stage14
-    with:
-      worker: stage15-worker10
-      depends: stage14
-  stage15-worker11:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage15-worker11' )
-    needs: stage14
-    with:
-      worker: stage15-worker11
-      depends: stage14
-  stage15-worker12:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage15-worker12' )
-    needs: stage14
-    with:
-      worker: stage15-worker12
-      depends: stage14
-  stage15-worker13:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage15-worker13' )
-    needs: stage14
-    with:
-      worker: stage15-worker13
-      depends: stage14
-  stage15-worker14:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage15-worker14' )
-    needs: stage14
-    with:
-      worker: stage15-worker14
-      depends: stage14
-  stage15-worker15:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage15-worker15' )
-    needs: stage14
-    with:
-      worker: stage15-worker15
-      depends: stage14
-  stage15-worker16:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage15-worker16' )
-    needs: stage14
-    with:
-      worker: stage15-worker16
-      depends: stage14
-  stage15-worker17:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage15-worker17' )
-    needs: stage14
-    with:
-      worker: stage15-worker17
-      depends: stage14
-  stage15-worker18:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage15-worker18' )
-    needs: stage14
-    with:
-      worker: stage15-worker18
-      depends: stage14
-  stage15-worker19:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage15-worker19' )
-    needs: stage14
-    with:
-      worker: stage15-worker19
-      depends: stage14
   stage15:
     uses: ./.github/workflows/aggregate-debs.yaml
     if: always() && !cancelled()
-    needs: [stage15-worker0, stage15-worker1, stage15-worker2, stage15-worker3, stage15-worker4, stage15-worker5, stage15-worker6, stage15-worker7, stage15-worker8, stage15-worker9, stage15-worker10, stage15-worker11, stage15-worker12, stage15-worker13, stage15-worker14, stage15-worker15, stage15-worker16, stage15-worker17, stage15-worker18, stage15-worker19, ]
+    needs: [stage15-worker0, stage15-worker1, stage15-worker2, stage15-worker3, stage15-worker4, stage15-worker5, stage15-worker6, stage15-worker7, stage15-worker8, stage15-worker9, ]
     with:
       stage: 15
 
@@ -2338,80 +1288,10 @@ jobs:
     with:
       worker: stage16-worker9
       depends: stage15
-  stage16-worker10:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage16-worker10' )
-    needs: stage15
-    with:
-      worker: stage16-worker10
-      depends: stage15
-  stage16-worker11:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage16-worker11' )
-    needs: stage15
-    with:
-      worker: stage16-worker11
-      depends: stage15
-  stage16-worker12:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage16-worker12' )
-    needs: stage15
-    with:
-      worker: stage16-worker12
-      depends: stage15
-  stage16-worker13:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage16-worker13' )
-    needs: stage15
-    with:
-      worker: stage16-worker13
-      depends: stage15
-  stage16-worker14:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage16-worker14' )
-    needs: stage15
-    with:
-      worker: stage16-worker14
-      depends: stage15
-  stage16-worker15:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage16-worker15' )
-    needs: stage15
-    with:
-      worker: stage16-worker15
-      depends: stage15
-  stage16-worker16:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage16-worker16' )
-    needs: stage15
-    with:
-      worker: stage16-worker16
-      depends: stage15
-  stage16-worker17:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage16-worker17' )
-    needs: stage15
-    with:
-      worker: stage16-worker17
-      depends: stage15
-  stage16-worker18:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage16-worker18' )
-    needs: stage15
-    with:
-      worker: stage16-worker18
-      depends: stage15
-  stage16-worker19:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage16-worker19' )
-    needs: stage15
-    with:
-      worker: stage16-worker19
-      depends: stage15
   stage16:
     uses: ./.github/workflows/aggregate-debs.yaml
     if: always() && !cancelled()
-    needs: [stage16-worker0, stage16-worker1, stage16-worker2, stage16-worker3, stage16-worker4, stage16-worker5, stage16-worker6, stage16-worker7, stage16-worker8, stage16-worker9, stage16-worker10, stage16-worker11, stage16-worker12, stage16-worker13, stage16-worker14, stage16-worker15, stage16-worker16, stage16-worker17, stage16-worker18, stage16-worker19, ]
+    needs: [stage16-worker0, stage16-worker1, stage16-worker2, stage16-worker3, stage16-worker4, stage16-worker5, stage16-worker6, stage16-worker7, stage16-worker8, stage16-worker9, ]
     with:
       stage: 16
 
@@ -2485,80 +1365,10 @@ jobs:
     with:
       worker: stage17-worker9
       depends: stage16
-  stage17-worker10:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage17-worker10' )
-    needs: stage16
-    with:
-      worker: stage17-worker10
-      depends: stage16
-  stage17-worker11:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage17-worker11' )
-    needs: stage16
-    with:
-      worker: stage17-worker11
-      depends: stage16
-  stage17-worker12:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage17-worker12' )
-    needs: stage16
-    with:
-      worker: stage17-worker12
-      depends: stage16
-  stage17-worker13:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage17-worker13' )
-    needs: stage16
-    with:
-      worker: stage17-worker13
-      depends: stage16
-  stage17-worker14:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage17-worker14' )
-    needs: stage16
-    with:
-      worker: stage17-worker14
-      depends: stage16
-  stage17-worker15:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage17-worker15' )
-    needs: stage16
-    with:
-      worker: stage17-worker15
-      depends: stage16
-  stage17-worker16:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage17-worker16' )
-    needs: stage16
-    with:
-      worker: stage17-worker16
-      depends: stage16
-  stage17-worker17:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage17-worker17' )
-    needs: stage16
-    with:
-      worker: stage17-worker17
-      depends: stage16
-  stage17-worker18:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage17-worker18' )
-    needs: stage16
-    with:
-      worker: stage17-worker18
-      depends: stage16
-  stage17-worker19:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage17-worker19' )
-    needs: stage16
-    with:
-      worker: stage17-worker19
-      depends: stage16
   stage17:
     uses: ./.github/workflows/aggregate-debs.yaml
     if: always() && !cancelled()
-    needs: [stage17-worker0, stage17-worker1, stage17-worker2, stage17-worker3, stage17-worker4, stage17-worker5, stage17-worker6, stage17-worker7, stage17-worker8, stage17-worker9, stage17-worker10, stage17-worker11, stage17-worker12, stage17-worker13, stage17-worker14, stage17-worker15, stage17-worker16, stage17-worker17, stage17-worker18, stage17-worker19, ]
+    needs: [stage17-worker0, stage17-worker1, stage17-worker2, stage17-worker3, stage17-worker4, stage17-worker5, stage17-worker6, stage17-worker7, stage17-worker8, stage17-worker9, ]
     with:
       stage: 17
 
@@ -2632,80 +1442,10 @@ jobs:
     with:
       worker: stage18-worker9
       depends: stage17
-  stage18-worker10:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage18-worker10' )
-    needs: stage17
-    with:
-      worker: stage18-worker10
-      depends: stage17
-  stage18-worker11:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage18-worker11' )
-    needs: stage17
-    with:
-      worker: stage18-worker11
-      depends: stage17
-  stage18-worker12:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage18-worker12' )
-    needs: stage17
-    with:
-      worker: stage18-worker12
-      depends: stage17
-  stage18-worker13:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage18-worker13' )
-    needs: stage17
-    with:
-      worker: stage18-worker13
-      depends: stage17
-  stage18-worker14:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage18-worker14' )
-    needs: stage17
-    with:
-      worker: stage18-worker14
-      depends: stage17
-  stage18-worker15:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage18-worker15' )
-    needs: stage17
-    with:
-      worker: stage18-worker15
-      depends: stage17
-  stage18-worker16:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage18-worker16' )
-    needs: stage17
-    with:
-      worker: stage18-worker16
-      depends: stage17
-  stage18-worker17:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage18-worker17' )
-    needs: stage17
-    with:
-      worker: stage18-worker17
-      depends: stage17
-  stage18-worker18:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage18-worker18' )
-    needs: stage17
-    with:
-      worker: stage18-worker18
-      depends: stage17
-  stage18-worker19:
-    uses: ./.github/workflows/worker.yaml
-    if: (always() && !cancelled()) && contains( needs.stage-1.outputs.workers, 'stage18-worker19' )
-    needs: stage17
-    with:
-      worker: stage18-worker19
-      depends: stage17
   stage18:
     uses: ./.github/workflows/aggregate-debs.yaml
     if: always() && !cancelled()
-    needs: [stage18-worker0, stage18-worker1, stage18-worker2, stage18-worker3, stage18-worker4, stage18-worker5, stage18-worker6, stage18-worker7, stage18-worker8, stage18-worker9, stage18-worker10, stage18-worker11, stage18-worker12, stage18-worker13, stage18-worker14, stage18-worker15, stage18-worker16, stage18-worker17, stage18-worker18, stage18-worker19, ]
+    needs: [stage18-worker0, stage18-worker1, stage18-worker2, stage18-worker3, stage18-worker4, stage18-worker5, stage18-worker6, stage18-worker7, stage18-worker8, stage18-worker9, ]
     with:
       stage: 18
 
