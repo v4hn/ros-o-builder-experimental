@@ -25,7 +25,7 @@ jobs:
           sudo apt update
           DEBIAN_FRONTEND=noninteractive sudo apt install -y vcstool catkin
           mkdir src
-          vcs import --recursive --shallow --input sources.repos src
+          vcs import -w 5 --recursive --shallow --input sources.repos src
       - name: Extract rosdep keys
         run: |
           for PKG in $(catkin_topological_order --only-names); do
