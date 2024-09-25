@@ -33,8 +33,6 @@ jobs:
             echo "Cache not found"
             exit 1
           fi
-      - name: Install YQ
-        uses: dcarbone/install-yq-action@v1.1.1
       - name: List repositories
         run: |
           OPTS=$(yq ".\"${{ inputs.worker }}\".sbuild_options" jobs.yaml)
