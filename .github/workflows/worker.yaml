@@ -15,9 +15,6 @@ jobs:
       DEB_DISTRO: jammy
       SEGMENT_DOWNLOAD_TIMEOUT_MINS: 10
     steps:
-      # attempt to mitigate network issues
-      - name: Tune GitHub-hosted runner network
-        uses: smorimoto/tune-github-hosted-runner-network@v1
       - name: Check out the repo
         uses: actions/checkout@v4
       - name: Use apt packages ${{ inputs.depends }}
