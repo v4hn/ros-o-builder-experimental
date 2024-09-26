@@ -26,8 +26,10 @@ jobs:
           DEBIAN_FRONTEND=noninteractive sudo apt install -y vcstool catkin
           mkdir src
           vcs import -w 5 --recursive --shallow --input sources.repos src
-      - name: Extract rosdep keys
+      - name: Prepare rosdep keys
         run: |
+          cp rosdep.yaml local.yaml
+          echo >> local.yaml # ensure newline at the end
           for PKG in $(catkin_topological_order --only-names); do
             printf "%s:\n  %s:\n  - %s\n" "$PKG" "${{ env.DISTRIBUTION }}" "ros-one-$(printf '%s' "$PKG" | tr '_' '-')" | tee -a local.yaml
           done
