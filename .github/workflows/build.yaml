@@ -4,6 +4,9 @@ on:
   workflow_dispatch:
   push:
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+
 env:
   AGG: /home/runner/apt_repo_dependencies
   DISTRIBUTION: ubuntu
