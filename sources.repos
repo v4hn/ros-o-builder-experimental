@@ -722,8 +722,8 @@ repositories:
     version: melodic-devel
   wge100_driver:
     type: git
-    url: https://github.com/ros-drivers/wge100_driver.git
-    version: noetic-devel
+    url: https://github.com/ros-o/wge100_driver.git
+    version: obese-devel
   eml:
     type: git
     url: https://github.com/ros-o/eml.git
