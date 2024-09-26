@@ -6,6 +6,9 @@ catkin:
 collada_parser:
   ubuntu:
     - libcollada-parser-dev
+collada_urdf:
+  ubuntu:
+    - libcollada-urdf-dev
 octomap:
   ubuntu:
     - liboctomap-dev
