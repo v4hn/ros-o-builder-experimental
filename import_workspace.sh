@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-mkdir ws 2>/dev/null && echo "creating new folder 'ws'" || echo "using existing folder 'ws'"
+mkdir workspace 2>/dev/null && echo "creating new folder 'ws'" || echo "using existing folder 'ws'"
 
 if [[ -n "$1" ]]; then
   REPOS="$@"
@@ -10,5 +10,5 @@ fi
 
 for f in $REPOS; do
   echo importing $f
-  vcs import --shallow --recursive ws --input "$f" >/dev/null
+  vcs import --shallow --recursive workspace --input "$f" >/dev/null
 done
