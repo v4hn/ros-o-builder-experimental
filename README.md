@@ -4,7 +4,7 @@ This repository builds an extended ROS ecosystem for Debian-based distributions 
 
 **Target Distribution**: At the moment packages are build for Ubuntu 22.04 jammy - other Debian-based target distributions can be setup as well.
 
-**Build Time**: Build times vary on the amount of packages selected, an extended system of around 850 packages takes around 12 hours to build.
+**Build Time**: Build times vary on the amount of packages selected. An extended system of around 850 packages takes around 12 hours to build using the staged parallel builder.
 
 ## Usage
 
