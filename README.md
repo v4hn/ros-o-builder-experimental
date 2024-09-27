@@ -25,7 +25,7 @@ To use this repository yourself, you need [to change github's default permission
 
 - `<distro>-one-unstable` contains the generated results of each individual action run (either manually triggered or scheduled)
 
-- `jammy-one` contains a snapshot of `jammy-one-unstable` that can be updated (or *synced*) by the user using the `sync-unstable` action workflow.
+- `<distro>-one` contains a snapshot of `<distro>-one-unstable` that can be updated (or *synced*) by the user using the `sync-unstable` action workflow.
 
 ## How to Add Packages
 
