@@ -1,8 +1,14 @@
 #!/usr/bin/env python
 
-import em
-
 # Generate a YAML file for a GitHub Actions workflow to implement a staged build of ROS packages.
+# This only ever needs to be run when changes need to be made to the build workflow.
+# It is NOT invoked during the regular build process.
+# Legit reasons to run this script are:
+# - to change the number of build stages if longer dependency chains are introduced
+# - change the number of workers per stage
+# - include other changes to the build workflow in the script itself and regenerate the YAML file accordingly
+
+import em
 
 # Stages are defined by dependency levels.
 # Each stage builds packages that depend only on packages from previous stages.
@@ -20,7 +26,9 @@ BUILD_YAML_TEMPLATE = R"""name: build
 
 on:
   workflow_dispatch:
-  push:
+  schedule:
+    # build weekly to find breakage
+    - cron: '13 1 * * 6'
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -59,7 +67,7 @@ jobs:
       - name: Prepare Jobs
         id: worker
         run: |
-          ./scripts/generate_jobs.py workspace | tee ${{ env.JOBS_YAML }}
+          ./scripts/generate-jobs.py workspace | tee ${{ env.JOBS_YAML }}
           echo "workers=$(cat ${{ env.JOBS_YAML }} | sed -n '/^stage.*:$/ p' | tr -d '\n')" >> $GITHUB_OUTPUT
       - name: Store jobs cache
         uses: actions/cache/save@@v4

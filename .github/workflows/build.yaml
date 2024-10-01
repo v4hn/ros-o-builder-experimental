@@ -2,7 +2,9 @@ name: build
 
 on:
   workflow_dispatch:
-  push:
+  schedule:
+    # build weekly to find breakage
+    - cron: '13 1 * * 6'
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
